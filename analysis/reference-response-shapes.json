@@ -1,0 +1,1089 @@
+{
+  "me": {
+    "status": 200,
+    "shape": {
+      "code": "int",
+      "data": {
+        "id": "int",
+        "username": "str",
+        "name": "str",
+        "role": "str",
+        "role_name": "str",
+        "tenant_id": "int",
+        "permissions": [
+          "str"
+        ]
+      }
+    }
+  },
+  "dashboard": {
+    "status": 200,
+    "shape": {
+      "cards": {
+        "sku_count": "int",
+        "inventory_quantity": "int",
+        "inventory_available": "int",
+        "pending_purchase": "int",
+        "pending_sales": "int",
+        "urgent_replenishment": "int",
+        "pending_approvals": "int",
+        "shipping_quantity": "int",
+        "sales_amount": "int",
+        "inventory_local_available": "int",
+        "inventory_value_cny": "float",
+        "period": "str",
+        "sales_by_currency": [],
+        "sales_basis": "str"
+      },
+      "trend": [],
+      "alerts": [
+        {
+          "id": "int",
+          "tenant_id": "int",
+          "batch_no": "str",
+          "wid": "int",
+          "warehouse_name": "str",
+          "product_id": "int",
+          "sku": "str",
+          "fnsku": "str",
+          "store_id": "int",
+          "store_name": "str",
+          "quantity": "int",
+          "available": "int",
+          "source_batch_no": "NoneType",
+          "order_sn": "NoneType",
+          "created_at": "str",
+          "updated_at": "str",
+          "batch": "str",
+          "synthetic": "bool"
+        }
+      ],
+      "generated_at": "str"
+    }
+  },
+  "products?limit=1": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "tenant_id": "int",
+          "sku": "str",
+          "name": "str",
+          "model": "str",
+          "category": "str",
+          "status": "str",
+          "price": "float",
+          "cost": "float",
+          "created_at": "str",
+          "updated_at": "str",
+          "product_type": "str",
+          "identifier": "str",
+          "unit": "str",
+          "material": "str",
+          "brand": "str",
+          "tag": "str",
+          "developer": "str",
+          "owner": "str",
+          "description": "NoneType",
+          "supplier_name": "str",
+          "moq": "int",
+          "procurement_lead_days": "int",
+          "default_carton_qty": "int",
+          "carton_length": "float",
+          "carton_width": "float",
+          "carton_height": "float",
+          "carton_weight": "float",
+          "hs_code": "NoneType",
+          "customs_name": "NoneType",
+          "customs_price": "float",
+          "origin_country": "NoneType",
+          "qc_method": "str",
+          "qc_standard": "str",
+          "image_url": "NoneType",
+          "official_attributes": {
+            "picture_list": [
+              {
+                "pic_url": "str",
+                "is_primary": "int"
+              }
+            ],
+            "unit_process_fee": "int",
+            "category_id": "int",
+            "brand_id": "int",
+            "open_status": "int",
+            "status": "int",
+            "group_list": [
+              {
+                "sku": "str",
+                "quantity": "int"
+              }
+            ],
+            "cg_opt_uid": "int",
+            "cg_opt_username": "str",
+            "product_developer_uid": "int",
+            "product_creator_uid": "int",
+            "is_append_product_duty": "int",
+            "purchase_remark": "str",
+            "is_related": "int",
+            "cg_product_length": "str",
+            "cg_product_width": "str",
+            "cg_product_height": "str"
+          }
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "page": "int",
+      "pages": "int"
+    }
+  },
+  "purchase-orders?limit=1": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "tenant_id": "int",
+          "order_sn": "str",
+          "custom_order_sn": "str",
+          "supplier_id": "NoneType",
+          "supplier_name": "str",
+          "warehouse_name": "str",
+          "status_text": "str",
+          "order_time": "str",
+          "purchase_currency": "str",
+          "amount": "float",
+          "item_list": [
+            {
+              "sku": "str",
+              "quantity": "int",
+              "qty": "int",
+              "unit_price": "float",
+              "purchase_unit_price": "float"
+            }
+          ],
+          "created_at": "str",
+          "updated_at": "str",
+          "purchase_user": "str",
+          "planned_arrival": "str",
+          "payment_status": "str",
+          "tax_rate": "float",
+          "remark": "str",
+          "freight": "float",
+          "other_fee": "float",
+          "allocation_method": "NoneType",
+          "logistics_provider": "NoneType",
+          "tracking_no": "NoneType",
+          "qc_type": "NoneType",
+          "received_qty": "int",
+          "pending_qty": "int",
+          "payment_plan": "NoneType",
+          "source_plan_no": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "page": "int",
+      "pages": "int"
+    }
+  },
+  "sales-orders?limit=1": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "tenant_id": "int",
+          "order_sn": "str",
+          "platform": "str",
+          "store_name": "str",
+          "buyer": "str",
+          "status_text": "str",
+          "order_time": "str",
+          "currency": "str",
+          "amount": "float",
+          "item_list": [
+            {
+              "sku": "str",
+              "product_id": "int",
+              "product_name": "str",
+              "quantity": "int",
+              "unit_price": "float"
+            }
+          ],
+          "created_at": "str",
+          "updated_at": "str",
+          "platform_order_sn": "NoneType",
+          "site": "str",
+          "country": "str",
+          "phone": "NoneType",
+          "shipping_address": "NoneType",
+          "fulfillment_status": "str",
+          "payment_status": "str",
+          "shipping_warehouse": "str",
+          "delivery_method": "NoneType",
+          "tracking_no": "NoneType",
+          "carrier": "NoneType",
+          "refund_status": "NoneType",
+          "remark": "str",
+          "synthetic": "bool",
+          "dataset": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "page": "int",
+      "pages": "int"
+    }
+  },
+  "inventory?limit=1": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "tenant_id": "int",
+          "batch_no": "str",
+          "wid": "int",
+          "warehouse_name": "str",
+          "product_id": "int",
+          "sku": "str",
+          "fnsku": "NoneType",
+          "store_id": "int",
+          "store_name": "str",
+          "quantity": "int",
+          "available": "int",
+          "source_batch_no": "NoneType",
+          "order_sn": "NoneType",
+          "created_at": "str",
+          "updated_at": "str",
+          "synthetic": "bool",
+          "dataset": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "page": "int",
+      "pages": "int"
+    }
+  },
+  "sales-report": {
+    "status": 200,
+    "shape": {
+      "source_count": "int",
+      "metrics": [
+        [
+          "str"
+        ]
+      ],
+      "summary": {
+        "headers": [
+          "str"
+        ],
+        "rows": [
+          [
+            "str"
+          ]
+        ]
+      }
+    }
+  },
+  "ad-report": {
+    "status": 200,
+    "shape": {
+      "source_count": "int",
+      "metrics": [
+        [
+          "str"
+        ]
+      ],
+      "summary": {
+        "headers": [
+          "str"
+        ],
+        "rows": [
+          [
+            "str"
+          ]
+        ]
+      }
+    }
+  },
+  "accounts-receivable": {
+    "status": 200,
+    "shape": {
+      "kind": "str",
+      "items": [
+        {
+          "id": "int",
+          "source_resource": "str",
+          "order_sn": "str",
+          "counterparty": "str",
+          "currency": "str",
+          "ordered_amount": "str",
+          "due_amount": "str",
+          "recorded_paid": "NoneType",
+          "reversed_amount": "NoneType",
+          "balance": "NoneType",
+          "evidence_status": "str",
+          "voucher_ids": [],
+          "order_status": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "accounts-payable": {
+    "status": 200,
+    "shape": {
+      "kind": "str",
+      "items": [
+        {
+          "id": "int",
+          "source_resource": "str",
+          "order_sn": "str",
+          "counterparty": "str",
+          "currency": "str",
+          "ordered_amount": "str",
+          "due_amount": "str",
+          "recorded_paid": "str",
+          "reversed_amount": "str",
+          "balance": "str",
+          "evidence_status": "str",
+          "voucher_ids": [],
+          "order_status": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "inventory-aging": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "batch_no": "str",
+          "wid": "int",
+          "warehouse_name": "str",
+          "sku": "str",
+          "quantity": "int",
+          "available": "int",
+          "ledger_count": "NoneType",
+          "entry_resource": "NoneType",
+          "entry_record_id": "NoneType",
+          "entry_time": "NoneType",
+          "reason": "str",
+          "age_days": "NoneType",
+          "bucket": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "summary": [
+        {
+          "bucket": "str",
+          "batches": "int",
+          "known_quantity": "int",
+          "unknown_quantity_batches": "int",
+          "known_available": "int",
+          "unknown_available_batches": "int",
+          "quantity": "int",
+          "available": "int"
+        }
+      ],
+      "as_of": "str",
+      "quantity": "int",
+      "known_quantity": "int",
+      "unknown_quantity_batches": "int"
+    }
+  },
+  "supplier-quotes": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "quote_no": "str",
+          "supplier_id": "int",
+          "product_id": "int",
+          "supplier_code": "str",
+          "supplier_name": "str",
+          "sku": "str",
+          "product_name": "str",
+          "currency": "str",
+          "unit_price": "str",
+          "minimum_quantity": "int",
+          "lead_days": "int",
+          "valid_from": "str",
+          "valid_to": "str",
+          "enabled": "bool",
+          "version": "int",
+          "actor": "str",
+          "created_at": "str",
+          "status": "str",
+          "minimum_amount": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "ad-traffic": {
+    "status": 200,
+    "shape": {
+      "dimension": "str",
+      "view": "str",
+      "items": [
+        {
+          "campaign_id": "int",
+          "keyword_text": "str",
+          "match_type": "str",
+          "currency": "str",
+          "attribution_window_days": "int",
+          "impressions": "int",
+          "clicks": "int",
+          "attributed_orders": "int",
+          "spend_cents": "int",
+          "attributed_sales_cents": "int",
+          "fact_count": "int",
+          "spend": "str",
+          "attributed_sales": "str",
+          "ctr": "str",
+          "cpc": "str",
+          "cvr": "str",
+          "acos": "str",
+          "roas": "str",
+          "group": {
+            "campaign_id": "int",
+            "keyword_text": "str",
+            "match_type": "str",
+            "currency": "str",
+            "attribution_window_days": "int"
+          },
+          "campaign_name": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "customer-voice": {
+    "status": 200,
+    "shape": {
+      "kind": "str",
+      "view": "str",
+      "items": [
+        {
+          "id": "int",
+          "source_record_key": "str",
+          "platform": "str",
+          "store_id": "int",
+          "listing_id": "int",
+          "rating": "int",
+          "title": "str",
+          "body": "str",
+          "business_date": "str",
+          "visibility": "str",
+          "created_at": "str",
+          "store_name": "str",
+          "related_no": "str",
+          "sku": "str",
+          "related_id": "int",
+          "handling_version": "int",
+          "handling_status": "str",
+          "handling_note": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int",
+      "summary": {
+        "count": "int",
+        "average_rating": "str",
+        "low_rating_count": "int",
+        "low_rating_ratio": "str",
+        "distribution": {
+          "1": "int",
+          "2": "int",
+          "3": "int",
+          "4": "int",
+          "5": "int"
+        }
+      }
+    }
+  },
+  "service-templates": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "template_no": "str",
+          "version": "int",
+          "name": "str",
+          "language": "str",
+          "subject_template": "str",
+          "body_template": "str",
+          "variable_names": [
+            "str"
+          ],
+          "enabled": "bool",
+          "actor": "str",
+          "created_at": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "sales-policies": {
+    "status": 400,
+    "error": "{\"code\":400,\"message\":\"类型或历史条件无效\",\"data\":null}"
+  },
+  "sales-targets": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "target_no": "str",
+          "version": "int",
+          "store_id": "int",
+          "platform": "str",
+          "store_name": "str",
+          "site": "str",
+          "month": "str",
+          "currency": "str",
+          "target_cents": "int",
+          "enabled": "bool",
+          "actor": "str",
+          "created_at": "str",
+          "target_amount": "str",
+          "scope_valid": "bool",
+          "orders": "int",
+          "fallback_orders": "int",
+          "unknown_orders": "int",
+          "actual_cents": "int",
+          "actual_net": "str",
+          "achievement_percent": "str",
+          "gap": "str",
+          "reason": "NoneType"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "logistics-directory": {
+    "status": 400,
+    "error": "{\"code\":400,\"message\":\"目录类型无效\",\"data\":null}"
+  },
+  "logistics-costs": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "reference_no": "str",
+          "type": "str",
+          "currency": "str",
+          "amount": "float",
+          "counterparty": "str",
+          "status_text": "str",
+          "occurred_at": "str",
+          "expense": {
+            "amount": "str",
+            "currency": "str"
+          },
+          "estimated": {
+            "amount": "str",
+            "currency": "str"
+          },
+          "shipment": {
+            "id": "int",
+            "shipment_id": "str",
+            "carrier": "str",
+            "destination": "str",
+            "warehouse_name": "str",
+            "logistics_channel": "str"
+          },
+          "link_status": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "exchange-rates": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "base_currency": "str",
+          "quote_currency": "str",
+          "effective_date": "str",
+          "rate": "str",
+          "reason": "str",
+          "version": "int",
+          "created_at": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "commercial-invoices": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "invoice_no": "str",
+          "document_type": "str",
+          "source_resource": "str",
+          "source_id": "int",
+          "direction": "str",
+          "source_order_no": "str",
+          "counterparty_name": "str",
+          "currency": "str",
+          "issue_date": "str",
+          "item_list": [
+            {
+              "amount": "str",
+              "description": "str",
+              "line_no": "int",
+              "quantity": "int",
+              "sku": "str",
+              "unit_price": "str"
+            }
+          ],
+          "amount": "str",
+          "source_sha256": "str",
+          "status": "str",
+          "version": "int",
+          "confirmed_at": "NoneType",
+          "voided_at": "NoneType",
+          "void_reason": "NoneType",
+          "created_at": "str",
+          "updated_at": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "record-context/products/1": {
+    "status": 200,
+    "shape": {
+      "record": {
+        "id": "int",
+        "tenant_id": "int",
+        "sku": "str",
+        "name": "str",
+        "model": "str",
+        "category": "str",
+        "status": "str",
+        "price": "float",
+        "cost": "float",
+        "created_at": "str",
+        "updated_at": "str",
+        "product_type": "str",
+        "identifier": "str",
+        "unit": "str",
+        "material": "str",
+        "brand": "str",
+        "tag": "str",
+        "developer": "str",
+        "owner": "str",
+        "description": "str",
+        "supplier_name": "str",
+        "moq": "int",
+        "procurement_lead_days": "int",
+        "default_carton_qty": "int",
+        "carton_length": "float",
+        "carton_width": "float",
+        "carton_height": "float",
+        "carton_weight": "float",
+        "hs_code": "str",
+        "customs_name": "str",
+        "customs_price": "float",
+        "origin_country": "str",
+        "qc_method": "str",
+        "qc_standard": "str",
+        "image_url": "NoneType",
+        "official_attributes": {},
+        "synthetic": "bool",
+        "style": "str",
+        "color": "str",
+        "size": "str",
+        "season": "str",
+        "retail_currency": "str",
+        "cost_currency": "str"
+      },
+      "items": [],
+      "related": [
+        {
+          "resource": "str",
+          "page": "str",
+          "id": "int",
+          "label": "str",
+          "relationship": "str",
+          "record": {
+            "id": "int",
+            "tenant_id": "int",
+            "batch_no": "str",
+            "wid": "int",
+            "warehouse_name": "str",
+            "product_id": "int",
+            "sku": "str",
+            "fnsku": "str",
+            "store_id": "int",
+            "store_name": "str",
+            "quantity": "int",
+            "available": "int",
+            "source_batch_no": "NoneType",
+            "order_sn": "NoneType",
+            "created_at": "str",
+            "updated_at": "str",
+            "synthetic": "bool",
+            "reserved": "int",
+            "balance_source": "str"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "method": "str",
+          "path": "str",
+          "actor": "str",
+          "payload": "str",
+          "created_at": "str"
+        }
+      ]
+    }
+  },
+  "sales-workflow/1": {
+    "status": 200,
+    "shape": {
+      "code": "int",
+      "data": {
+        "order_id": "int",
+        "state": "str",
+        "local_only": "bool",
+        "message": "str"
+      }
+    }
+  },
+  "stock-counts": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "count_no": "str",
+          "warehouse_id": "int",
+          "warehouse_name": "str",
+          "state": "str",
+          "revision": "int",
+          "reason": "str",
+          "snapshot": {
+            "warehouse_id": "int",
+            "warehouse_name": "str",
+            "rows": [
+              {
+                "id": "int",
+                "batch_no": "str",
+                "sku": "str",
+                "quantity": "int",
+                "available": "int",
+                "updated_at": "str",
+                "revision": "int",
+                "defective": "int",
+                "ledger_version": "int",
+                "unavailable_other": "int"
+              }
+            ]
+          },
+          "counts": [
+            {
+              "inventory_id": "int",
+              "good": "int",
+              "defective": "int"
+            }
+          ],
+          "created_by": "str",
+          "approved_by": "NoneType",
+          "created_at": "str",
+          "updated_at": "str",
+          "posted_at": "NoneType",
+          "reversed_at": "NoneType",
+          "lines": [
+            {
+              "id": "int",
+              "batch_no": "str",
+              "sku": "str",
+              "quantity": "int",
+              "available": "int",
+              "updated_at": "str",
+              "revision": "int",
+              "defective": "int",
+              "ledger_version": "int",
+              "unavailable_other": "int",
+              "inventory_id": "int",
+              "good": "int",
+              "delta_good": "int",
+              "delta_defective": "int",
+              "delta_quantity": "int",
+              "expected_good": "int",
+              "expected_defective": "int",
+              "counted_quantity": "int"
+            }
+          ],
+          "events": [
+            {
+              "id": "int",
+              "count_id": "int",
+              "action": "str",
+              "actor": "str",
+              "reason": "str",
+              "revision": "int",
+              "created_at": "str"
+            }
+          ],
+          "totals": {
+            "quantity": "int",
+            "counted_quantity": "int",
+            "delta_quantity": "int",
+            "delta_good": "int",
+            "delta_defective": "int"
+          }
+        }
+      ],
+      "total": "int",
+      "offset": "int",
+      "limit": "int"
+    }
+  },
+  "purchase-amendments": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "int",
+          "reference": "str",
+          "purchase_id": "int",
+          "reason": "str",
+          "original": {
+            "item_list": [
+              {
+                "sku": "str",
+                "product_id": "int",
+                "product_name": "str",
+                "msku": "str",
+                "fnsku": "str",
+                "asin": "str",
+                "quantity": "int",
+                "price": "float",
+                "unit_price": "float"
+              }
+            ],
+            "pending_qty": "int",
+            "supplier_id": "int",
+            "warehouse_name": "str",
+            "purchase_user": "str",
+            "status_text": "str",
+            "freight": "float",
+            "other_fee": "float",
+            "amount": "float",
+            "purchase_currency": "str",
+            "supplier_name": "str",
+            "planned_arrival": "str",
+            "received_qty": "int",
+            "tax_rate": "float",
+            "payment_status": "str"
+          },
+          "proposed": {
+            "planned_arrival": "str"
+          },
+          "fingerprint": "str",
+          "state": "str",
+          "approval_id": "int",
+          "review_note": "str",
+          "created_at": "str",
+          "updated_at": "str"
+        }
+      ],
+      "total": "int",
+      "limit": "int",
+      "offset": "int"
+    }
+  },
+  "access/catalog": {
+    "status": 200,
+    "shape": {
+      "permissions": {
+        "products:read": "str",
+        "products:write": "str",
+        "products:delete": "str",
+        "inventory:read": "str",
+        "inventory:write": "str",
+        "inventory:delete": "str",
+        "purchase-orders:read": "str",
+        "purchase-orders:write": "str",
+        "purchase-orders:delete": "str",
+        "sales-orders:read": "str",
+        "sales-orders:write": "str",
+        "sales-orders:delete": "str",
+        "inbound-orders:read": "str",
+        "inbound-orders:write": "str",
+        "inbound-orders:delete": "str",
+        "outbound-orders:read": "str",
+        "outbound-orders:write": "str",
+        "outbound-orders:delete": "str",
+        "listings:read": "str",
+        "listings:write": "str",
+        "listings:delete": "str",
+        "finance:read": "str",
+        "finance:write": "str",
+        "finance:delete": "str",
+        "shipments:read": "str",
+        "shipments:write": "str",
+        "shipments:delete": "str",
+        "replenishment:read": "str",
+        "replenishment:write": "str",
+        "replenishment:delete": "str",
+        "shipping-plans:read": "str",
+        "shipping-plans:write": "str",
+        "shipping-plans:delete": "str",
+        "supplier-deliveries:read": "str",
+        "supplier-deliveries:write": "str",
+        "supplier-deliveries:delete": "str",
+        "store-authorizations:read": "str",
+        "store-authorizations:write": "str",
+        "store-authorizations:delete": "str",
+        "approvals:read": "str",
+        "approvals:write": "str",
+        "approvals:delete": "str",
+        "audit-logs:read": "str",
+        "suppliers:read": "str",
+        "suppliers:write": "str",
+        "suppliers:delete": "str",
+        "warehouses:read": "str",
+        "warehouses:write": "str",
+        "warehouses:delete": "str",
+        "users:read": "str",
+        "users:write": "str",
+        "users:delete": "str",
+        "ad-campaigns:read": "str",
+        "ad-campaigns:write": "str",
+        "ad-campaigns:delete": "str",
+        "customer-tickets:read": "str",
+        "customer-tickets:write": "str",
+        "customer-tickets:delete": "str",
+        "fba-delivery-orders:read": "str",
+        "fba-delivery-orders:write": "str",
+        "fba-delivery-orders:delete": "str",
+        "costs:read": "str",
+        "costs:write": "str",
+        "dashboard:read": "str",
+        "freight-quote:read": "str",
+        "commercial-invoices:read": "str",
+        "commercial-invoices:write": "str",
+        "commercial-invoices:action:confirm": "str",
+        "commercial-invoices:action:void": "str",
+        "exchange-rates:read": "str",
+        "exchange-rates:write": "str",
+        "purchase-orders:action:submit": "str",
+        "purchase-orders:action:place-order": "str",
+        "purchase-orders:action:void": "str",
+        "purchase-orders:action:record-payment": "str",
+        "purchase-orders:action:payment-history": "str",
+        "purchase-orders:action:finish-arrival": "str",
+        "approvals:action:decide": "str",
+        "replenishment:action:create-purchase": "str",
+        "supplier-deliveries:action:receive": "str",
+        "supplier-deliveries:action:inspect": "str",
+        "shipments:action:create-delivery": "str",
+        "shipping-plans:action:submit": "str",
+        "shipping-plans:action:lock": "str",
+        "shipping-plans:action:release": "str",
+        "shipping-plans:action:create-delivery": "str",
+        "fba-delivery-orders:action:allocate": "str",
+        "fba-delivery-orders:action:release": "str",
+        "fba-delivery-orders:action:dispatch": "str",
+        "fba-delivery-orders:action:receive": "str",
+        "sales-orders:action:record-payment": "str",
+        "sales-orders:action:ship": "str",
+        "sales-orders:action:freeze": "str",
+        "sales-orders:action:unfreeze": "str",
+        "sales-orders:action:cancel": "str",
+        "inbound-orders:action:confirm": "str",
+        "outbound-orders:action:confirm": "str",
+        "inbound-orders:action:reverse": "str",
+        "outbound-orders:action:reverse": "str",
+        "inbound-orders:action:receive-transfer": "str",
+        "outbound-orders:action:receive-transfer": "str",
+        "stock-counts:read": "str",
+        "stock-counts:write": "str",
+        "stock-counts:submit": "str",
+        "stock-counts:approve": "str",
+        "stock-counts:reject": "str",
+        "stock-counts:post": "str",
+        "stock-counts:reverse": "str",
+        "stock-counts:cancel": "str",
+        "purchase-amendments:read": "str",
+        "purchase-amendments:create": "str",
+        "purchase-amendments:submit": "str",
+        "purchase-amendments:approve": "str",
+        "purchase-amendments:reject": "str",
+        "purchase-amendments:apply": "str",
+        "purchase-amendments:reverse-payment": "str",
+        "sales-returns:read": "str",
+        "sales-returns:write": "str",
+        "sales-returns:action:authorize": "str",
+        "sales-returns:action:receive": "str",
+        "sales-returns:action:refund": "str",
+        "sales-returns:action:cancel": "str",
+        "manual-testing:read": "str",
+        "stock:read": "str"
+      },
+      "scope": "str",
+      "scope_supported_resources": [
+        "str"
+      ]
+    }
+  },
+  "access/roles": {
+    "status": 200,
+    "shape": {
+      "items": [
+        {
+          "id": "str",
+          "name": "str",
+          "permissions": [
+            "str"
+          ]
+        }
+      ]
+    }
+  }
+}

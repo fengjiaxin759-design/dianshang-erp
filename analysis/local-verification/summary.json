@@ -1,0 +1,6 @@
+{
+  "tool": "REA 6.4.0 capture-browser-scenario",
+  "status": "timed-out",
+  "verified": false,
+  "reason": "The browser navigated the local pages, but REA evidence export did not return. The owned REA processes were stopped; no completed REA browser verification or screenshot is claimed."
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#171c2f">
+  <title>本地独立 ERP · 业务工作台</title>
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/style.css?v=20260916-r3-ui1">
+  <link rel="stylesheet" href="static/manual-testing.css?v=20260916-r2">
+  <link rel="stylesheet" href="static/access-control.css?v=20260916-r2">
+  <link rel="stylesheet" href="static/service-workspace.css?v=20260917-r3">
+</head>
+<body>
+  <aside class="module-rail" aria-label="业务模块">
+    <button class="logo" data-module="home" aria-label="首页"><span class="nova-mark">N</span><div class="nova-wordmark"><b>NOVA <em>ERP</em></b><small>业务工作空间</small></div></button>
+    <button class="nova-home" id="nova-home" aria-label="经营概览"><span class="nova-home-icon"></span><span>经营概览</span></button>
+    <div class="rail-caption">业务管理</div>
+    <nav id="module-nav"></nav>
+    <div class="rail-workspace"><span class="workspace-avatar">N</span><div><b>我的工作空间</b><small>本地数据 · 独立保存</small></div></div>
+    <button class="rail-collapse" id="rail-collapse" aria-label="收起菜单">☰</button>
+  </aside>
+
+  <header class="topbar">
+    <div class="page-tabs" id="page-tabs"></div>
+    <div class="top-actions">
+      <span class="feature environment-badge" title="数据独立保存在本地数据库">本地工作空间</span>
+      <button class="feature" id="contract-help">接口与维护说明</button>
+      
+      <button class="account" id="account-button"><span>账</span>登录 / 切换账号</button>
+    </div>
+  </header>
+
+  <section class="module-menu" id="module-menu" aria-label="模块菜单"></section>
+  <main id="workspace" class="workspace"><div class="loading"><i></i>正在加载业务工作台…</div></main>
+
+  <dialog id="record-dialog" class="record-dialog">
+    <form method="dialog" id="record-form">
+      <header><div><small id="record-kicker">业务单据</small><h2 id="record-title">新建</h2></div><button value="cancel" class="dialog-close" aria-label="关闭">×</button></header>
+      <div class="record-body" id="record-fields"></div>
+      <footer><button value="cancel">取消</button><button type="button" class="primary" id="record-save">保存</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="detail-dialog" class="detail-dialog">
+    <form method="dialog">
+      <header><div><small>单据详情</small><h2 id="detail-title">详情</h2></div><button value="cancel" class="dialog-close" aria-label="关闭">×</button></header>
+      <div id="detail-body" class="detail-body"></div>
+      <footer><button value="cancel" class="primary">关闭</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="login-dialog" class="login-dialog">
+    <form method="dialog">
+      <div class="login-logo"><span>A</span><div><b>ERP 业务工作台</b><small>使用已授权账号登录</small></div></div>
+      <label>登录账号<input id="login-app-id" type="text" autocomplete="username" required></label>
+      <label>密码<input id="login-app-secret" type="password" autocomplete="current-password" required></label>
+      <label hidden>岗位角色<select id="login-role"><option value="administrator">超级管理员</option><option value="operator">运营</option><option value="purchasing">采购</option><option value="warehouse">仓库</option><option value="finance">财务</option></select></label>
+      <p id="login-error" role="alert"></p>
+      <button type="button" class="primary" id="login-submit">进入工作台</button>
+    </form>
+  </dialog>
+
+  <div id="toast-region" aria-live="polite"></div>
+  <script defer src="static/manual-testing.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/compat-fields.css?v=20260916-r2">
+  <script defer src="static/compat-fields.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/stocktaking.css?v=20260916-r2">
+  <script defer src="static/stocktaking.js?v=20260916-r3"></script>
+  <script defer src="static/product-attributes.js?v=20260916-r2"></script>
+  <script defer src="static/sales-workflow.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/sales-returns.css?v=20260916-r2">
+  <script defer src="static/sales-returns.js?v=20260916-r3"></script>
+  <script defer src="static/purchase-settlement.js?v=20260916-r2"></script>
+  <script defer src="static/access-control.js?v=20260916-r2"></script>
+  <script defer src="static/fba-workflow.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/purchase-amendments.css?v=20260916-r2">
+  <script defer src="static/purchase-amendments.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/listing-dimensions.css?v=20260916-r2">
+  <script defer src="static/listing-dimensions.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/receiving-workflow.css?v=20260916-r2">
+  <script defer src="static/receiving-workflow.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/business-views.css?v=20260917-r3">
+  <script defer src="static/logistics-views.js?v=20260917-r3"></script>
+  <link rel="stylesheet" href="static/finance-registers.css?v=20260917-r3">
+  <script defer src="static/finance-registers.js?v=20260917-r3"></script>
+  <script defer src="static/account-balances.js?v=20260917-r3"></script>
+  <script defer src="static/logistics-directory.js?v=20260917-r3"></script>
+  <script defer src="static/supplier-quotes.js?v=20260917-r3"></script>
+  <script defer src="static/ad-traffic.js?v=20260917-r3"></script>
+  <script defer src="static/customer-voice.js?v=20260917-r3"></script>
+  <script defer src="static/service-templates.js?v=20260917-r3"></script>
+  <script defer src="static/inventory-aging.js?v=20260917-r3"></script>
+  <script defer src="static/sales-policies.js?v=20260917-r3"></script>
+  <script defer src="static/sales-targets.js?v=20260917-r3"></script>
+  <script defer src="static/business-workspace.js?v=20260928-1"></script>
+  <link rel="stylesheet" href="static/business-workspace.css?v=20260928-1">
+  <script defer src="static/document-controller.js?v=20260928-1"></script>
+  <script defer src="static/app.js?v=20260928-1"></script>
+  <script defer src="static/stock-extensions.js?v=20260916-r2"></script>
+  <link rel="stylesheet" href="static/nova-theme.css?v=20261014-1">
+  <script defer src="static/nova-theme.js?v=20261014-1"></script>
+</body>
+</html>

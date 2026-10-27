@@ -1,0 +1,400 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+    "headless": true
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5186/lingxing-erp/"
+  },
+  "environment": {
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai"
+  },
+  "actions": [
+    {
+      "step_id": "login-user",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "#login-app-id"
+      },
+      "value": {
+        "source": "secret",
+        "secret_id": "qa-user"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "login-password",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "#login-app-secret"
+      },
+      "value": {
+        "source": "secret",
+        "secret_id": "qa-password"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "login-submit",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "#login-submit"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "login-complete",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "#login-dialog"
+      },
+      "state": "hidden",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "dashboard-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".home-page"
+      },
+      "state": "visible",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "page-0",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#product-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-0",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-1",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#purchase-orders"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-1",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-2",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#sales-orders"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-2",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-3",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#inventory"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-3",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-4",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#fba-plans"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-4",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-5",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#stocktaking"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-5",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-6",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#rma-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-6",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-7",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#accounts-payable"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-7",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-8",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#supplier-quotation"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-8",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-9",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#inventory-aging"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-9",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-10",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#ad-keywords"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-10",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-11",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#review-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-11",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-12",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#service-templates"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-12",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-13",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#promotion-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-13",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-14",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#target-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-14",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-15",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#logistics-channel"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-15",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-16",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#invoice-management"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-16",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-17",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#currency-settings"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-17",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-18",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#login-accounts"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-18",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-19",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#sales-stat"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-19",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "page-20",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5186/lingxing-erp/#dashboard"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "ready-20",
+      "action": "wait_for_timeout",
+      "duration_ms": 250
+    },
+    {
+      "step_id": "final-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".home-page"
+      },
+      "state": "visible",
+      "timeout_ms": 10000
+    }
+  ],
+  "secrets": [
+    {
+      "secret_id": "qa-user",
+      "environment_variable": "ERP_QA_USER"
+    },
+    {
+      "secret_id": "qa-password",
+      "environment_variable": "ERP_QA_PASSWORD"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom"
+    ],
+    "at_end": [
+      "url",
+      "dom",
+      "screenshot"
+    ],
+    "events": [
+      "page-errors",
+      "console",
+      "network"
+    ]
+  }
+}

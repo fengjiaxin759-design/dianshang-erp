@@ -1,0 +1,608 @@
+[
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 7,
+    "pathLiteral": "/api/v1/me",
+    "snippet": "accessIdentityRequest=(async()=>{try{const data=await api('/api/v1/me');accessIdentity=data.data;$('#account-button').textContent=accessIdentity.username+' · '+accessIdentity.role_name;}catch(e){accessIdentity=null;}finally{accessIdentityRequest=null;}accessApplyPermissions();})();"
+  },
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 29,
+    "pathLiteral": "/api/v1/",
+    "snippet": "async function scopeOptions(resource){let items=[],offset=0;while(true){const page=await api('/api/v1/'+resource+'?limit=200&offset='+offset);items.push(...page.items);offset+=page.items.length;if(offset>=page.total)break;if(!page.items.length)throw Error('范围选项加载不完整，请刷新后重试');}return items;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 30,
+    "pathLiteral": "/api/v1/access/accounts",
+    "snippet": "const [accounts,roles,catalog,shops,warehouses]=await Promise.all([api('/api/v1/access/accounts'),api('/api/v1/access/roles'),api('/api/v1/access/catalog'),scopeOptions('store-authorizations'),scopeOptions('warehouses')]);"
+  },
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 30,
+    "pathLiteral": "/api/v1/access/roles",
+    "snippet": "const [accounts,roles,catalog,shops,warehouses]=await Promise.all([api('/api/v1/access/accounts'),api('/api/v1/access/roles'),api('/api/v1/access/catalog'),scopeOptions('store-authorizations'),scopeOptions('warehouses')]);"
+  },
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 30,
+    "pathLiteral": "/api/v1/access/catalog",
+    "snippet": "const [accounts,roles,catalog,shops,warehouses]=await Promise.all([api('/api/v1/access/accounts'),api('/api/v1/access/roles'),api('/api/v1/access/catalog'),scopeOptions('store-authorizations'),scopeOptions('warehouses')]);"
+  },
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "line": 42,
+    "pathLiteral": "/api/v1/access/",
+    "snippet": "try{await api('/api/v1/access/'+kind+(edit?'/'+encodeURIComponent(row.id):''),{method:edit?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});form.reset();toast('保存成功');await renderAccessAdmin(kind);}catch(e){$('#access-error').textContent=e.message;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/account-balances.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/accounts-",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取往来余额…';try{const params=new URLSearchParams(new FormData(form));params.set('limit',50);params.set('offset',offset);const data=await api('/api/v1/accounts-'+page.balanceKind+'?'+params);if(epoch!==state.renderEpoch||request!==serial)return;const cells=[['order_sn','原单号'],['counterparty',receivable?'客户':'供应商'],['currency','币种'],['due_amount',receivable?'应收金额':'应付金额'],['recorded_paid',receivable?'累计实收':'有效已付'],['reversed_amount',receivable?'已退金额':'冲销金额'],['balance',receivable?'未收余额':'未付余额'],['order_status','订单状态']];output.innerHTML='<div class=\"business-scroll\"><table><thead><tr>'+cells.map(c=>'<th>'+esc(c[1])+'</th>').join('')+'<th>凭证核对</th><th>操作</th></tr></thead><tbody>'+data.items.map(r=>'<tr>'+cells.map(c=>'<td>'+esc(r[c[0]]==null?'—':r[c[0]])+'</td>').join('')+'<td>'+esc({verified:'已核对',legacy_unverified:'待核对',mismatch:'凭证不一致'}[r.evidence_status])+'</td><td><button data-balance-source=\"'+r.id+'\">原单</button>'+r.vouch"
+  },
+  {
+    "file": "reference/lingxing-erp/static/ad-traffic.js",
+    "line": 13,
+    "pathLiteral": "/api/v1/ad-traffic?",
+    "snippet": "const data=await api('/api/v1/ad-traffic?'+params);if(epoch!==state.renderEpoch||serial!==request)return;rows=data.items;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 233,
+    "pathLiteral": "/api/auth-server/oauth/access-token",
+    "snippet": "response=await fetch(BASE+'/api/auth-server/oauth/access-token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body,signal:AbortSignal.timeout(20000)});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 235,
+    "pathLiteral": "/api/session",
+    "snippet": "response=await fetch(BASE+'/api/session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:role || 'administrator'})});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 249,
+    "pathLiteral": "/api/auth-server/oauth/refresh",
+    "snippet": "refreshPromise=(async()=>{const refreshToken=sessionStorage.getItem('erp_refresh_token'),appId=sessionStorage.getItem('erp_app_id');if(!refreshToken||!appId)throw Error('登录已过期');const response=await fetch(BASE+'/api/auth-server/oauth/refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId,refreshToken})});const data=await response.json();if(!response.ok||!data.data)throw Error('登录已过期');state.token=data.data.access_token;sessionStorage.setItem('erp_access_token',state.token);sessionStorage.setItem('erp_refresh_token',data.data.refresh_token||data.data.refreshToken||'');})();"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 256,
+    "pathLiteral": "/api/v1/",
+    "snippet": "if(method==='GET'||method==='HEAD'||!path.startsWith('/api/v1/'))return apiRequest(path,options);"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 339,
+    "pathLiteral": "/api/v1/",
+    "snippet": "async function deleteRecord(row,page){if(!await erpConfirm('确认删除 '+page.title+' #'+row.id+'？此操作不会自动冲销关联单据或库存，请仅删除确认可清理的测试记录。'))return;try{await api('/api/v1/'+page.resource+'/'+row.id,{method:'DELETE'});toast('记录已删除');loadTable(page);}catch(error){toast(error.message,'error');}}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 502,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const result=await api('/api/v1/'+page.resource+'?'+params.toString(),{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 509,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const lookup=await api('/api/v1/'+page.resource+'?'+new URLSearchParams({field:pending.key,q:pending.value,match:'exact',limit:'2'}),{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 528,
+    "pathLiteral": "/api/v1/dashboard",
+    "snippet": "const data=await api('/api/v1/dashboard',{signal:controller.signal});if(controller.signal.aborted||state.activeRequest!==controller)return; const cards=data.cards; const max=Math.max.apply(null,data.trend.map(function(item){return item.amount;}));"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 547,
+    "pathLiteral": "/api/v1/",
+    "snippet": "if(!page.resource)return;const operation=CONTRACT.paths['/api/v1/'+page.resource];if(!operation)return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 601,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const loads=new Map();function records(resource){if(!loads.has(resource))loads.set(resource,(async()=>{const rows=[];let offset=0,total=1;while(offset<total){const data=await api('/api/v1/'+resource+'?limit=200&offset='+offset);rows.push(...data.items);offset+=data.items.length;total=data.total;if(!data.items.length)break;}return rows;})());return loads.get(resource);}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 644,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const result=await api('/api/v1/'+page.resource+(state.editing?'/'+state.editing.id:''),{method:state.editing?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(raw)});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 645,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const persisted=await api('/api/v1/'+page.resource+'/'+result.id);for(const key of Object.keys(raw)){if(JSON.stringify(persisted[key])!==JSON.stringify(raw[key]))throw Error('服务端已写入，但回读字段不一致：'+key+'；请检查详情，勿重复创建');}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 669,
+    "pathLiteral": "/api/v1/stock/",
+    "snippet": "try{const result=await api('/api/v1/stock/'+resource+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ids})});const data=result.data;const message='成功 '+data.success+'，失败 '+data.fail+(data.fail?'：'+data.failList.map(x=>x.id+' '+x.message).join('；'):'；已核对库存流水');toast(message,data.fail?'error':'');if(data.fail)await erpAlert(message);await loadTable(PAGES[state.page]);}catch(error){toast(error.message,'error');}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 673,
+    "pathLiteral": "/api/v1/stock/ledger?resource=",
+    "snippet": "try{const result=await api('/api/v1/stock/ledger?resource='+encodeURIComponent(resource)+'&record_id='+id+'&limit=200');$('#detail-body').innerHTML='<p>共 '+result.total+' 条；历史封存及未过账单据无新增流水。'+(result.total>200?'显示前200条，完整数据请在接口页分页。':'')+'</p>'+simpleReportTable(['SKU','仓库','批次ID','变动','原总量','现总量','原可用','现可用','操作','冲销原流水','原因','过账时间'],result.items.map(x=>[x.sku,x.warehouse_name,x.inventory_id,x.delta_quantity,x.before_quantity,x.after_quantity,x.before_available,x.after_available,x.operation||'post',x.reverses_id||'—',x.reason||'—',x.created_at]));}catch(error){$('#detail-body').textContent=error.message;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 678,
+    "pathLiteral": "/api/v1/workflows/purchase-orders/",
+    "snippet": "if(action.startsWith('purchase-')){path='/api/v1/workflows/purchase-orders/'+id+'/'+action.slice(9);if(action==='purchase-void'&&!await erpConfirm('作废保留单据，且已有收货/入库会拒绝。确定继续？'))return;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 679,
+    "pathLiteral": "/api/v1/workflows/replenishment/",
+    "snippet": "if(action==='purchase')path='/api/v1/workflows/replenishment/'+id+'/create-purchase';"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 680,
+    "pathLiteral": "/api/v1/workflows/shipments/",
+    "snippet": "if(action==='create-delivery')path='/api/v1/workflows/shipments/'+id+'/create-delivery';"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 681,
+    "pathLiteral": "/api/v1/workflows/supplier-deliveries/",
+    "snippet": "if(action==='receive')path='/api/v1/workflows/supplier-deliveries/'+id+'/receive';"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 682,
+    "pathLiteral": "/api/v1/workflows/approvals/",
+    "snippet": "if(action==='approve' || action==='reject'){path='/api/v1/workflows/approvals/'+id+'/decide';body={decision:action==='approve'?'approve':'reject'};}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 693,
+    "pathLiteral": "/api/v1/products",
+    "snippet": "try{if(!form.reportValidity())return;const payload=collectPayload(form,PAGES['product-management'],false);button.disabled=true;const result=await api('/api/v1/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const saved=await api('/api/v1/products/'+result.id);for(const key of Object.keys(payload)){if(JSON.stringify(saved[key])!==JSON.stringify(payload[key]))throw Error('已保存但回读不一致：'+key+'，请勿重复创建');}toast('产品已保存并回读核对');selectPage('product-management');}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 693,
+    "pathLiteral": "/api/v1/products/",
+    "snippet": "try{if(!form.reportValidity())return;const payload=collectPayload(form,PAGES['product-management'],false);button.disabled=true;const result=await api('/api/v1/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const saved=await api('/api/v1/products/'+result.id);for(const key of Object.keys(payload)){if(JSON.stringify(saved[key])!==JSON.stringify(payload[key]))throw Error('已保存但回读不一致：'+key+'，请勿重复创建');}toast('产品已保存并回读核对');selectPage('product-management');}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 700,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const read=async offset=>{const query=new URLSearchParams(params);query.set('offset',String(offset));return api('/api/v1/'+resource+'?'+query,{signal:controller.signal});};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 721,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const result=await api('/api/v1/'+(page.type==='ad-report'?'ad-report':'sales-report')+'?'+params,{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 753,
+    "pathLiteral": "/api/v1/dashboard",
+    "snippet": "try{const data=await api('/api/v1/dashboard',{signal:controller.signal});if(controller.signal.aborted||state.activeRequest!==controller)return;const cards=data.cards;state.reportRows=[{created_at:cards.period+'-01',amount:cards.sales_amount,currency:'USD',store_name:'全部渠道'}];reportShell(page,[['本月净销售（USD）',money(cards.sales_amount,'$'),cards.period+' 排除取消/退款'],['库存采购成本（CNY）',money(cards.inventory_value_cny,'¥'),'全库数量×SKU采购成本'],['待采购',String(cards.pending_purchase),'采购单'],['在途计划数量',String(cards.shipping_quantity),'未完成发货计划']],periodSummary(state.reportRows,'amount','本月净销售'));}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 869,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const bulk=event.target.closest('[data-bulk-status]');if(bulk){const checked=[].slice.call(document.querySelectorAll('.table-shell tbody input[data-row-id]:checked'));if(!checked.length){toast('请先选择记录','error');return;}if(!await erpConfirm('批量操作仅修改状态字段，不自动过账、收付款或出入库。确认修改所选本地记录？'))return;const page=PAGES[state.page];const statusKey=bulk.dataset.bulkField || 'status_text';Promise.all(checked.map(function(box){return api('/api/v1/'+page.resource+'/'+box.dataset.rowId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify((function(){const value={};value[statusKey]=bulk.dataset.bulkStatus;return value;})())});})).then(function(){toast('已更新 '+checked.length+' 条记录');state.menuOpen=false;loadTable(page);}).catch(function(error){toast(error.message,'error');});return;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 921,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const first=await api('/api/v1/'+page.resource+'?'+params,{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 926,
+    "pathLiteral": "/api/v1/",
+    "snippet": "params.set('offset',String(offset));const next=await api('/api/v1/'+page.resource+'?'+params,{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "line": 956,
+    "pathLiteral": "/api/v1/",
+    "snippet": "for(const item of valid){try{await api('/api/v1/'+page.resource,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(item.payload)});success+=1;}catch(error){failures.push('第 '+item.line+' 行：'+error.message);}}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/customer-voice.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/customer-voice?",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取评价…';try{const params=new URLSearchParams(new FormData(filter));params.set('kind',kind);params.set('limit',50);params.set('offset',offset);const data=await api('/api/v1/customer-voice?'+params);if(epoch!==state.renderEpoch||serial!==request)return;rows=data.items;const s=data.summary;output.innerHTML='<div class=\"business-filter\"><span>未删除评价 '+s.count+' 条</span><span>平均评分 '+esc(s.average_rating===null?'—':Number(s.average_rating).toFixed(2))+'</span><span>低评分 '+s.low_rating_count+' 条 / '+(s.low_rating_ratio===null?'—':(Number(s.low_rating_ratio)*100).toFixed(2)+'%')+'</span><span>'+Object.entries(s.distribution).map(([k,v])=>k+'星 '+v).join(' · ')+'</span></div><div class=\"business-scroll\"><table><thead><tr>'+['日期','店铺',isReview?'商品Listing':'订单','评分','内容','显示状态','处理状态','操作'].map(v=>'<th>'+v+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr>'+[r.business_date,r.store_name,r.related_no,r.rating,r.body.length>7"
+  },
+  {
+    "file": "reference/lingxing-erp/static/customer-voice.js",
+    "line": 8,
+    "pathLiteral": "/api/v1/customer-voice",
+    "snippet": "$('#voice-handle').onsubmit=async e=>{e.preventDefault();if(saving)return;const form=e.currentTarget,body=Object.fromEntries(new FormData(form));Object.assign(body,{kind,record_id:selected.id,expected_version:selected.handling_version});const signature=JSON.stringify(body);if(!pending||pending.signature!==signature)pending={signature,key:crypto.randomUUID()};body.request_key=pending.key;const message=$('#voice-message'),controls=[...form.querySelectorAll('button,textarea,select')];saving=true;controls.forEach(el=>el.disabled=true);message.textContent='正在保存…';try{const result=await api('/api/v1/customer-voice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(epoch!==state.renderEpoch)return;selected.handling_version=result.data.version;selected.handling_status=result.data.handling_status;selected.handling_note=result.data.note;pending=null;message.textContent='已保存 · 版本 '+result.data.version;await load();}catch(error){if(epoch===state.renderEpoch)"
+  },
+  {
+    "file": "reference/lingxing-erp/static/customer-voice.js",
+    "line": 11,
+    "pathLiteral": "/api/v1/customer-voice?",
+    "snippet": "root.onclick=async e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.hasAttribute('data-voice-retry'))load();if(b.hasAttribute('data-voice-prev')){offset=Math.max(0,offset-50);load();}if(b.hasAttribute('data-voice-next')){offset+=50;load();}if(b.hasAttribute('data-voice-detail')&&!saving)show(rows[Number(b.dataset.voiceDetail)]);if(b.hasAttribute('data-voice-close')&&!saving)detail.hidden=true;if(b.hasAttribute('data-voice-source')&&selected)showDetail({id:selected.related_id},isReview?'listings':'sales-orders');if(b.hasAttribute('data-voice-history')&&selected){const target=$('#voice-history'),id=selected.id;target.textContent='正在读取处理历史…';try{const data=await api('/api/v1/customer-voice?'+new URLSearchParams({kind,record_id:id,history:1,visibility:'all',limit:100}));if(epoch!==state.renderEpoch||selected.id!==id)return;target.innerHTML=data.items.map(r=>'<p>'+esc('版本 '+r.version+' · '+r.created_at+' · '+r.actor+' · '+labels[r.handling_status]+' · '+r.note)+'</p>').j"
+  },
+  {
+    "file": "reference/lingxing-erp/static/document-controller.js",
+    "line": 87,
+    "pathLiteral": "/api/v1/",
+    "snippet": "const recordRead=api('/api/v1/'+encodeURIComponent(resource)+'/'+row.id,{signal:controller.signal});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/document-controller.js",
+    "line": 88,
+    "pathLiteral": "/api/v1/record-context/",
+    "snippet": "const contextRead=settle(api('/api/v1/record-context/'+encodeURIComponent(resource)+'/'+row.id,{signal:controller.signal}));"
+  },
+  {
+    "file": "reference/lingxing-erp/static/document-controller.js",
+    "line": 90,
+    "pathLiteral": "/api/v1/listing-dimensions/",
+    "snippet": "?settle(api('/api/v1/listing-dimensions/'+row.id,{signal:controller.signal})):null;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/document-controller.js",
+    "line": 136,
+    "pathLiteral": "/api/v1/supplier-deliveries?",
+    "snippet": "const data=await api('/api/v1/supplier-deliveries?'+new URLSearchParams({field:'purchase_order_sn',q:purchase.order_sn,match:'exact',limit:'200',offset:String(offset)}));"
+  },
+  {
+    "file": "reference/lingxing-erp/static/fba-workflow.js",
+    "line": 25,
+    "pathLiteral": "/api/v1/fba-delivery-orders/",
+    "snippet": "let row;try{row=await api('/api/v1/fba-delivery-orders/'+id);}catch(error){toast(error.message,'error');return;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/fba-workflow.js",
+    "line": 31,
+    "pathLiteral": "/api/v1/workflows/",
+    "snippet": "d.querySelector('form').onsubmit=async e=>{e.preventDefault();let body=Object.fromEntries(new FormData(e.target));if(action==='receive'){const items=[...d.querySelectorAll('[data-receipt-sku]')].map(input=>({sku:input.dataset.receiptSku,quantity:Number(input.value)})).filter(item=>item.quantity>0);body={request_key:body.request_key,quantity:items.reduce((total,item)=>total+item.quantity,0),items};if(!body.quantity){d.querySelector('[role=alert]').textContent='至少填写一个SKU的本次签收数量';return;}}const submit=d.querySelector('[type=submit]');submit.disabled=true;try{await api('/api/v1/workflows/'+resource+'/'+id+'/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});d.close();d.remove();toast('FBA流程完成');renderPage();}catch(error){d.querySelector('[role=alert]').textContent=error.message;}finally{submit.disabled=false;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/fba-workflow.js",
+    "line": 32,
+    "pathLiteral": "/api/v1/workflows/",
+    "snippet": "}else{b.disabled=true;try{await api('/api/v1/workflows/'+resource+'/'+id+'/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});toast({lock:'计划库存已锁定',release:'库存已释放',allocate:'库存已分配，可执行实际发货',submit:'已提交FBA审批','create-delivery':'已生成待配货单，请分配库存后发货'}[action]||'FBA流程完成');renderPage();}catch(error){toast(error.message,'error');}finally{b.disabled=false;}}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 19,
+    "pathLiteral": "/api/v1/commercial-invoices?",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取发票…';try{const p=new URLSearchParams(new FormData(form));p.set('limit',50);p.set('offset',offset);const data=await api('/api/v1/commercial-invoices?'+p);if(epoch!==state.renderEpoch||request!==serial)return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 22,
+    "pathLiteral": "/api/v1/commercial-invoices/",
+    "snippet": "const open=async id=>{const request=++serial;const r=(await api('/api/v1/commercial-invoices/'+id)).data;if(epoch!==state.renderEpoch||request!==serial)return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 26,
+    "pathLiteral": "/api/v1/commercial-invoices/",
+    "snippet": "d.querySelector('#invoice-edit').onsubmit=event=>{event.preventDefault();const body={...Object.fromEntries(new FormData(event.target)),expected_version:r.version};registerSubmit(d,()=>api('/api/v1/commercial-invoices/'+id,registerJSON('PUT',body)),done);};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 27,
+    "pathLiteral": "/api/v1/commercial-invoices/",
+    "snippet": "for(const action of ['confirm','void'])d.querySelector('[data-invoice-'+action+']').onclick=()=>{const body={expected_version:r.version,request_key:keys[action]};if(action==='void')body.reason=d.querySelector('#invoice-void-reason').value;registerSubmit(d,()=>api('/api/v1/commercial-invoices/'+id+'/'+action,registerJSON('POST',body)),done);};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 32,
+    "pathLiteral": "/api/v1/commercial-invoices",
+    "snippet": "d.querySelector('form').onsubmit=event=>{event.preventDefault();const body={...Object.fromEntries(new FormData(event.target)),request_key};body.source_id=Number(body.source_id);registerSubmit(d,()=>api('/api/v1/commercial-invoices',registerJSON('POST',body)),async result=>{if(epoch===state.renderEpoch){offset=0;await load();await open(result.data.id);}});};};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 40,
+    "pathLiteral": "/api/v1/exchange-rates",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取汇率…';try{const p=new URLSearchParams();p.set('limit',50);p.set('offset',offset);const field=mode==='history'?'order_sn':'effective_date';const value=form.elements[field].value;if(value)p.set(field,value);const data=await api('/api/v1/exchange-rates'+(mode==='history'?'/history':'')+'?'+p);if(epoch!==state.renderEpoch||request!==serial)return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 45,
+    "pathLiteral": "/api/v1/exchange-rates?limit=1&effective_date=",
+    "snippet": "d.querySelector('form').onsubmit=event=>{event.preventDefault();const body={...Object.fromEntries(new FormData(event.target)),base_currency:'USD',quote_currency:'CNY',request_key};registerSubmit(d,async()=>{const input=JSON.stringify(body);if(prepared&&input!==preparedInput)throw Error('重试请保持原登记内容；修改内容请关闭后重新登记');if(!prepared){const latest=await api('/api/v1/exchange-rates?limit=1&effective_date='+encodeURIComponent(body.effective_date));prepared={...body,expected_version:latest.items[0]?.version||0};preparedInput=input;}return api('/api/v1/exchange-rates',registerJSON('POST',prepared));},async()=>{if(epoch===state.renderEpoch){mode='versions';offset=0;updateMode();await load();}});};};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "line": 45,
+    "pathLiteral": "/api/v1/exchange-rates",
+    "snippet": "d.querySelector('form').onsubmit=event=>{event.preventDefault();const body={...Object.fromEntries(new FormData(event.target)),base_currency:'USD',quote_currency:'CNY',request_key};registerSubmit(d,async()=>{const input=JSON.stringify(body);if(prepared&&input!==preparedInput)throw Error('重试请保持原登记内容；修改内容请关闭后重新登记');if(!prepared){const latest=await api('/api/v1/exchange-rates?limit=1&effective_date='+encodeURIComponent(body.effective_date));prepared={...body,expected_version:latest.items[0]?.version||0};preparedInput=input;}return api('/api/v1/exchange-rates',registerJSON('POST',prepared));},async()=>{if(epoch===state.renderEpoch){mode='versions';offset=0;updateMode();await load();}});};};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/inventory-aging.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/inventory-aging?",
+    "snippet": "const load=async()=>{const request=++serial;list.textContent='正在读取批次库龄…';detail.hidden=true;++detailSerial;try{const p=new URLSearchParams(new FormData(filter));p.set('offset',offset);p.set('limit',50);const d=await api('/api/v1/inventory-aging?'+p);if(epoch!==state.renderEpoch||request!==serial)return;summary.innerHTML='<p>日期 '+esc(d.as_of)+' · 库存合计 '+(d.quantity===null?'已知 '+esc(d.known_quantity)+'，'+d.unknown_quantity_batches+' 批数量待核对':esc(d.quantity))+'</p><div class=\"business-scroll\"><table><thead><tr><th>库龄（天）</th>'+d.summary.map(r=>'<th>'+esc(r.bucket)+'</th>').join('')+'</tr></thead><tbody><tr><th>实物数量</th>'+d.summary.map(r=>'<td>'+(r.quantity===null?'已知 '+esc(r.known_quantity)+' / 待核对 '+r.unknown_quantity_batches+' 批':esc(r.quantity))+'</td>').join('')+'</tr><tr><th>可用数量</th>'+d.summary.map(r=>'<td>'+(r.available===null?'已知 '+esc(r.known_available)+' / 待核对 '+r.unknown_available_batches+' 批':esc(r.available))+'</td>').join('')+'</tr></tbody></table></div>';list.innerHTML='<div "
+  },
+  {
+    "file": "reference/lingxing-erp/static/inventory-aging.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/inventory-aging?inventory_id=",
+    "snippet": "const showLedger=async(id,ledgerOffset=0)=>{const request=++detailSerial;detail.hidden=false;detail.innerHTML='<h2>批次流水</h2><p>正在读取…</p>';try{const d=await api('/api/v1/inventory-aging?inventory_id='+id+'&ledger_offset='+ledgerOffset);if(epoch!==state.renderEpoch||request!==detailSerial)return;if(!d.items.length){detail.textContent='批次不存在';return;}const r=d.items[0];detail.innerHTML='<h2>'+esc(r.batch_no)+'</h2><p>'+esc(r.reason||('当前仓库入库 '+r.entry_time+' · '+r.age_days+' 天'))+'</p><div class=\"business-scroll\"><table><thead><tr>'+['流水ID','业务单号','操作','变更前','变动','变更后','时间','原单'].map(v=>'<th>'+v+'</th>').join('')+'</tr></thead><tbody>'+d.ledger.map(l=>'<tr>'+[l.id,l.order_sn,l.operation,l.before_quantity,l.delta_quantity,l.after_quantity,l.created_at].map(v=>'<td>'+esc(v)+'</td>').join('')+'<td>'+(['inbound-orders','outbound-orders','sales-orders'].includes(l.resource)?'<button data-aging-source=\"'+esc(l.resource)+'\" data-id=\"'+l.record_id+'\">查看原单</button>':'—')+'</td></tr>').join('')+'</"
+  },
+  {
+    "file": "reference/lingxing-erp/static/listing-dimensions.js",
+    "line": 9,
+    "pathLiteral": "/api/v1/listing-dimensions/",
+    "snippet": "const result=await api('/api/v1/listing-dimensions/'+id),row=result.data||{};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/listing-dimensions.js",
+    "line": 20,
+    "pathLiteral": "/api/v1/listing-dimensions/",
+    "snippet": "try{await api('/api/v1/listing-dimensions/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const saved=await api('/api/v1/listing-dimensions/'+id);if(!saved.data||saved.data.fnsku!==body.fnsku||saved.data.seller_sku!==body.seller_sku)throw Error('保存回读不一致，请刷新核对');toast('刊登资料已保存');dialog.close();await loadTable(PAGES[state.page]);}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/listing-dimensions.js",
+    "line": 20,
+    "pathLiteral": "/api/v1/listing-dimensions/",
+    "snippet": "try{await api('/api/v1/listing-dimensions/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const saved=await api('/api/v1/listing-dimensions/'+id);if(!saved.data||saved.data.fnsku!==body.fnsku||saved.data.seller_sku!==body.seller_sku)throw Error('保存回读不一致，请刷新核对');toast('刊登资料已保存');dialog.close();await loadTable(PAGES[state.page]);}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/logistics-directory.js",
+    "line": 4,
+    "pathLiteral": "/api/v1/logistics-directory?",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取物流目录…';try{const params=new URLSearchParams({kind:page.directoryKind,limit:50,offset});if(selected!==null)params.set('name',selected);const data=await api('/api/v1/logistics-directory?'+params);if(epoch!==state.renderEpoch||serial!==request)return;rows=data.items;const details=data.view==='shipments',fields=details?[['shipment_id','货件编号'],['carrier','承运商'],['logistics_channel','物流渠道'],['destination','目的地'],['country','国家'],['warehouse_name','发货仓'],['status_text','状态'],['box_count','箱数'],['total_weight','重量（kg）'],['expected_ship_date','预计发货'],['expected_arrival_date','预计到达']]:[['name',page.directoryKind==='carrier'?'承运商':'物流渠道'],['shipment_count','货件数'],['country_count','覆盖国家数'],['in_transit_count','运输中'],['received_count','已签收']];output.innerHTML=(details?'<div class=\"business-filter\"><button data-directory-back>返回目录</button><strong>'+esc(selected||'未指定')+'</strong></div>':'')+'<div class=\"business-scroll\"><table><thea"
+  },
+  {
+    "file": "reference/lingxing-erp/static/logistics-views.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/freight-quote?",
+    "snippet": "form.onsubmit=async event=>{event.preventDefault();const button=form.querySelector('button');if(button.disabled)return;button.disabled=true;output.textContent='正在计算…';try{const data=await api('/api/v1/freight-quote?'+new URLSearchParams(new FormData(form)));if(epoch!==state.renderEpoch)return;output.innerHTML='<div class=\"freight-metrics\">'+[['箱数',data.box_count+' 箱'],['计费体积',data.volume_cbm+' m³'],['毛重',data.gross_weight_kg+' kg'],['预计运费',data.currency+' '+data.freight_amount]].map(([label,value])=>'<div><span>'+esc(label)+'</span><strong>'+esc(value)+'</strong></div>').join('')+'</div><table><thead><tr><th>装箱量</th><th>单箱体积</th><th>单件毛重</th><th>体积单价</th><th>固定费用</th></tr></thead><tbody><tr><td>24 件/箱</td><td>0.096 m³</td><td>0.48 kg</td><td>CNY '+esc(data.rate_per_cbm)+'/m³</td><td>CNY '+esc(data.fixed_fee)+'</td></tr></tbody></table>';}catch(error){if(epoch===state.renderEpoch)output.textContent=error.message;}finally{button.disabled=false;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/logistics-views.js",
+    "line": 13,
+    "pathLiteral": "/api/v1/logistics-costs?",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取费用…';try{const params=new URLSearchParams(new FormData(form));params.set('offset',offset);params.set('limit',limit);const data=await api('/api/v1/logistics-costs?'+params);if(epoch!==state.renderEpoch||request!==serial)return;output.innerHTML='<div class=\"business-scroll\"><table><thead><tr><th>凭证ID</th><th>货件号</th><th>发生日期</th><th>实际费用</th><th>预计头程</th><th>承运商</th><th>目的地</th><th>关联状态</th><th>操作</th></tr></thead><tbody>'+data.items.map(r=>'<tr><td>'+r.id+'</td><td>'+esc(r.reference_no)+'</td><td>'+esc(r.occurred_at||'—')+'</td><td>'+money(r.expense)+'</td><td>'+money(r.estimated)+'</td><td>'+esc(r.shipment?.carrier||'—')+'</td><td>'+esc(r.shipment?.destination||'—')+'</td><td>'+esc({matched:'已关联',missing:'货件缺失',forbidden:'无货件权限'}[r.link_status])+'</td><td><button data-expense-detail=\"'+r.id+'\">凭证</button>'+(r.shipment?'<button data-shipment-detail=\"'+r.shipment.id+'\">货件</button>':'')+'</td></tr>').join('')+'</tbody></t"
+  },
+  {
+    "file": "reference/lingxing-erp/static/manual-testing.js",
+    "line": 23,
+    "pathLiteral": "/api/v1/manual-testing",
+    "snippet": "try{const data=await api('/api/v1/manual-testing');if(state.page!=='manual-testing')return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-amendments.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/purchase-orders?limit=",
+    "snippet": "async function load(){const seq=++serial;try{const d=await api('/api/v1/purchase-orders?limit='+limit+'&offset='+offset+'&field=order_sn&q='+encodeURIComponent(find('[data-po-query]').value));if(seq!==serial)return;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-amendments.js",
+    "line": 32,
+    "pathLiteral": "/api/v1/purchase-amendments?limit=",
+    "snippet": "async function load(){const d=await api('/api/v1/purchase-amendments?limit='+limit+'&offset='+offset+'&q='+encodeURIComponent($('#amend-query').value));if(epoch!==state.renderEpoch)return;rows=d.items;$('#amend-list').innerHTML='<div class=\"table-shell\"><table><thead><tr><th>编号</th><th>采购ID</th><th>原因</th><th>状态</th><th>操作</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+esc(r.reference)+'</td><td>'+r.purchase_id+'</td><td>'+esc(r.reason)+'</td><td>'+esc(r.state)+'</td><td><button data-amend-view=\"'+r.id+'\">对比/审核</button></td></tr>').join('')+'</tbody></table></div><p>共 '+d.total+' 条 · '+offset+' 起 / 本页 '+rows.length+' 条</p><button data-amend-prev '+(!offset?'disabled':'')+'>上一页</button><button data-amend-next '+(offset+limit>=d.total?'disabled':'')+'>下一页</button>';}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-amendments.js",
+    "line": 33,
+    "pathLiteral": "/api/v1/purchase-amendments",
+    "snippet": "async function send(path,body){try{const result=await api('/api/v1/purchase-amendments'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});await load();if(epoch!==state.renderEpoch)return;await show(result);$('#amend-error').textContent='';return result;}catch(e){if(epoch===state.renderEpoch&&$('#amend-error'))$('#amend-error').textContent=e.message;}}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-amendments.js",
+    "line": 36,
+    "pathLiteral": "/api/v1/purchase-amendments/",
+    "snippet": "row=await api('/api/v1/purchase-amendments/'+row.id);if(epoch!==state.renderEpoch)return;selectedId=row.id;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-settlement.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/workflows/purchase-orders/",
+    "snippet": "const call=(action,body={})=>api('/api/v1/workflows/purchase-orders/'+id+'/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-settlement.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/purchase-orders/",
+    "snippet": "try{const [historyResponse,po]=await Promise.all([call('payment-history'),api('/api/v1/purchase-orders/'+id)]);const history=historyResponse.data;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-settlement.js",
+    "line": 12,
+    "pathLiteral": "/api/v1/purchase-amendments/",
+    "snippet": "dialog.querySelectorAll('[data-reverse-payment]').forEach(button=>{if(typeof accessCan==='function'&&(!accessCan('purchase-amendments:reverse-payment')||!accessCan('costs:write'))){button.disabled=true;button.title='需要采购变更与成本维护权限';}button.onclick=()=>{const payment=history.payments.find(p=>p.id===Number(button.dataset.reversePayment)),host=dialog.querySelector('#payment-reversal-editor');host.innerHTML='<h3>冲销选定付款 #'+payment.id+' · '+esc(payment.reference)+' · '+esc(payment.amount)+' '+esc(payment.currency)+'</h3><label>补偿参考号<input data-reversal-reference minlength=\"3\" maxlength=\"500\"></label><label>冲销原因<textarea data-reversal-reason minlength=\"3\" maxlength=\"500\"></textarea></label><button type=\"button\" data-reversal-confirm>确认本地冲销</button><button type=\"button\" data-reversal-cancel>取消</button>';host.querySelector('[data-reversal-cancel]').onclick=()=>host.replaceChildren();host.querySelector('[data-reversal-confirm]').onclick=async event=>{const reference=host.querySelector('[data-reve"
+  },
+  {
+    "file": "reference/lingxing-erp/static/receiving-workflow.js",
+    "line": 4,
+    "pathLiteral": "/api/v1/supplier-deliveries/",
+    "snippet": "const row=await api('/api/v1/supplier-deliveries/'+id),response=await api('/api/v1/purchase-orders?field=order_sn&match=exact&q='+encodeURIComponent(row.purchase_order_sn));"
+  },
+  {
+    "file": "reference/lingxing-erp/static/receiving-workflow.js",
+    "line": 4,
+    "pathLiteral": "/api/v1/purchase-orders?field=order_sn&match=exact&q=",
+    "snippet": "const row=await api('/api/v1/supplier-deliveries/'+id),response=await api('/api/v1/purchase-orders?field=order_sn&match=exact&q='+encodeURIComponent(row.purchase_order_sn));"
+  },
+  {
+    "file": "reference/lingxing-erp/static/receiving-workflow.js",
+    "line": 9,
+    "pathLiteral": "/api/v1/workflows/supplier-deliveries/",
+    "snippet": "dialog.querySelector('[data-receiving-close]').onclick=()=>dialog.close();dialog.querySelector('form').onsubmit=async e=>{e.preventDefault();const form=e.currentTarget;try{const item_list=list.map((x,i)=>({sku:x.sku,available_qty:Number(form.elements['good-'+i].value),defective_qty:Number(form.elements['bad-'+i].value)}));await api('/api/v1/workflows/supplier-deliveries/'+id+'/inspect',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({item_list})});toast('逐SKU质检已确认');dialog.close();renderPage();}catch(error){dialog.querySelector('#receiving-error').textContent=error.message;}};const confirmButton=dialog.querySelector('[data-receiving-confirm]');if(confirmButton&&typeof accessCan==='function')confirmButton.disabled=!accessCan('supplier-deliveries:action:inspect');dialog.showModal();"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-policies.js",
+    "line": 10,
+    "pathLiteral": "/api/v1/sales-policies?",
+    "snippet": "const load=async()=>{const request=++serial;list.textContent='正在读取策略…';try{const p=new URLSearchParams(new FormData(filter));p.set('kind',kind);p.set('history',history?'1':'0');p.set('limit',50);p.set('offset',offset);const d=await api('/api/v1/sales-policies?'+p);if(epoch!==state.renderEpoch||request!==serial)return;rows=d.items;list.innerHTML='<div class=\"business-scroll\"><table><thead><tr>'+['编号','名称','版本','状态','优先级','登记人','时间','操作'].map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr>'+[r.policy_no,r.name,r.version,r.enabled?'启用':'停用',r.priority,r.actor,r.created_at].map(x=>'<td>'+esc(x)+'</td>').join('')+'<td><button data-policy-detail=\"'+i+'\">详情'+(promotion?' / 试算':'')+'</button><button data-policy-history=\"'+i+'\">历史</button>'+(accessCan('sales-orders:write')?'<button data-policy-revise=\"'+i+'\">修订</button>':'')+'</td></tr>').join('')+'</tbody></table></div><div class=\"business-pagination\"><span>共 '+d.total+' 条</span><button data-policy-prev '+(!offset?'d"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-policies.js",
+    "line": 12,
+    "pathLiteral": "/api/v1/sales-policies/trial",
+    "snippet": "const trial=async(f,policy)=>{const b=f.querySelector('button');if(b.disabled)return;b.disabled=true;const request=++trialSerial;result.textContent='正在核算…';const body=Object.fromEntries(new FormData(f));body.order_id=Number(body.order_id);body.kind=kind;if(policy)body.policy_id=policy.id;try{const response=await api('/api/v1/sales-policies/trial',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(epoch!==state.renderEpoch||request!==trialSerial)return;const d=response.data;result.innerHTML='<h2>'+(promotion?'促销试算':'规则验证')+'</h2><button data-policy-order=\"'+d.order_id+'\">查看原订单</button>'+(promotion?'<p>版本 '+d.version+' · '+esc(d.currency||'—')+' · '+(d.applied?'满足优惠条件':'不适用')+'</p><dl>'+Object.entries(d.checks).map(([k,v])=>'<dt>'+({enabled:'启用',store:'店铺',currency:'币种',date:'日期',threshold:'金额门槛'}[k]||k)+'</dt><dd>'+(v?'通过':'不通过')+'</dd>').join('')+'</dl><div class=\"business-scroll\"><table><thead><tr><th>原始金额</th><th>适用SKU金额</th><th>减额</th><th>试算金额<"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-policies.js",
+    "line": 14,
+    "pathLiteral": "/api/v1/sales-policies",
+    "snippet": "form.onsubmit=async e=>{e.preventDefault();if(saving)return;const values=Object.fromEntries(new FormData(form));const definition=promotion?Object.fromEntries(['store_id','eligible_skus','currency','discount_type','discount_value','minimum_eligible_amount','valid_from','valid_to'].map(k=>[k,k==='store_id'?Number(values[k]):k==='eligible_skus'?values[k].split(/[,，]/).map(x=>x.trim()).filter(Boolean):values[k]])):{action_type:values.action_type,action_value:values.action_value,conditions:[...form.querySelectorAll('.rule-condition')].map(r=>{const operator=r.querySelector('[data-rule-op]').value,value=r.querySelector('[data-rule-value]').value;return {field:r.querySelector('[data-rule-field]').value,operator,value:operator==='in'?value.split(/[,，]/).map(x=>x.trim()).filter(Boolean):value};})};const body={kind,policy_no:values.policy_no,name:values.name,enabled:values.enabled==='true',priority:Number(values.priority),expected_version:revision,definition};const signature=JSON.stringify(body)"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 7,
+    "pathLiteral": "/api/v1/sales-returns?",
+    "snippet": "const load=async()=>{const request=++serial;output.textContent='正在读取退货记录…';try{const params=new URLSearchParams(new FormData(form));if(!params.get('state'))params.delete('state');params.set('limit',limit);params.set('offset',offset);const j=await api('/api/v1/sales-returns?'+params);if(epoch!==state.renderEpoch||request!==serial)return;output.innerHTML='<div class=\"business-scroll\"><table><thead><tr><th>退货单</th><th>销售订单</th><th>店铺</th><th>状态</th><th>数量</th><th>申请退款</th><th>有效授权</th><th>实际退款</th>'+(refund?'<th>凭证核对</th>':'')+'<th>操作</th></tr></thead><tbody>'+j.items.map(r=>{const v=r.refund_view||{};return '<tr><td>'+esc(r.return_no)+'</td><td><button data-rma-sale=\"'+r.order_id+'\">'+esc(v.order_sn||r.order_id)+'</button></td><td>'+esc(v.store_name||'—')+'</td><td>'+esc(states[r.state]||r.state)+'</td><td>'+r.item_list.reduce((n,i)=>n+i.quantity,0)+'</td><td>'+money(v.requested)+'</td><td>'+money(v.authorized)+'</td><td>'+money(v.actual)+'</td>'+(refund?'<td>'+esc({matched:'已核对',missing"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 15,
+    "pathLiteral": "/api/v1/sales-workflow/",
+    "snippet": "$('#rma-load-order').onclick=async()=>{try{const id=Number(d.querySelector('[name=order_id]').value);const [flow,sale]=await Promise.all([api('/api/v1/sales-workflow/'+id),api('/api/v1/sales-orders/'+id)]);if(!['shipped','partially-shipped','frozen-partially-shipped'].includes(flow.data.state))throw Error('只能选择本地有实际发货的订单');items=(flow.data.remaining_items||[]).filter(i=>i.returnable_qty>0).map(i=>({sku:i.sku,quantity:i.returnable_qty}));d.querySelector('[name=currency]').value=sale.currency;$('#rma-items').innerHTML='<table><tr><th>SKU</th><th>可退数量（已发减已授权）</th><th>退货数量（0表示不退）</th></tr>'+items.map((i,n)=>'<tr><td>'+esc(i.sku)+'</td><td>'+i.quantity+'</td><td><input type=\"number\" min=\"0\" max=\"'+i.quantity+'\" step=\"1\" value=\"0\" data-rma-qty=\"'+n+'\" aria-label=\"退货 '+esc(i.sku)+'\"></td></tr>').join('')+'</table>';$('#rma-error').textContent='';}catch(e){$('#rma-error').textContent=e.message;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 15,
+    "pathLiteral": "/api/v1/sales-orders/",
+    "snippet": "$('#rma-load-order').onclick=async()=>{try{const id=Number(d.querySelector('[name=order_id]').value);const [flow,sale]=await Promise.all([api('/api/v1/sales-workflow/'+id),api('/api/v1/sales-orders/'+id)]);if(!['shipped','partially-shipped','frozen-partially-shipped'].includes(flow.data.state))throw Error('只能选择本地有实际发货的订单');items=(flow.data.remaining_items||[]).filter(i=>i.returnable_qty>0).map(i=>({sku:i.sku,quantity:i.returnable_qty}));d.querySelector('[name=currency]').value=sale.currency;$('#rma-items').innerHTML='<table><tr><th>SKU</th><th>可退数量（已发减已授权）</th><th>退货数量（0表示不退）</th></tr>'+items.map((i,n)=>'<tr><td>'+esc(i.sku)+'</td><td>'+i.quantity+'</td><td><input type=\"number\" min=\"0\" max=\"'+i.quantity+'\" step=\"1\" value=\"0\" data-rma-qty=\"'+n+'\" aria-label=\"退货 '+esc(i.sku)+'\"></td></tr>').join('')+'</table>';$('#rma-error').textContent='';}catch(e){$('#rma-error').textContent=e.message;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 16,
+    "pathLiteral": "/api/v1/sales-returns",
+    "snippet": "$('#rma-create').onsubmit=async e=>{e.preventDefault();try{const fd=new FormData(e.target),body=Object.fromEntries(fd);body.order_id=Number(body.order_id);body.item_list=items.map((i,n)=>({sku:i.sku,quantity:Number(d.querySelector('[data-rma-qty=\"'+n+'\"]').value)})).filter(i=>i.quantity>0);const r=await api('/api/v1/sales-returns',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});d.close();await renderSalesReturns();await rmaOpen(r.data.id);}catch(e){$('#rma-error').textContent=e.message;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 20,
+    "pathLiteral": "/api/v1/sales-returns/",
+    "snippet": "const r=(await api('/api/v1/sales-returns/'+id)).data;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "line": 32,
+    "pathLiteral": "/api/v1/sales-returns/",
+    "snippet": "d.addEventListener('click',async e=>{const related=e.target.closest('[data-rma-related]');if(related){d.close();await showDetail({id:Number(related.dataset.rmaRelatedId)},related.dataset.rmaRelated);return;}const b=e.target.closest('[data-rma-action]');if(!b||b.disabled||d.dataset.busy)return;const a=b.dataset.rmaAction;let data={};if(a==='receive')data.quality_list=r.item_list.map((i,n)=>({sku:i.sku,good_qty:Number(d.querySelector('[data-rma-good=\"'+n+'\"]').value),bad_qty:Number(d.querySelector('[data-rma-bad=\"'+n+'\"]').value)}));if(a==='refund')data={reference:d.querySelector('#rma-refund-ref').value,amount:r.refund_amount,currency:r.currency};if(a==='cancel')data={reason:d.querySelector('#rma-cancel-reason').value};const controls=[...d.querySelectorAll('input,button')].map(control=>[control,control.disabled]);d.dataset.busy='1';controls.forEach(([control])=>control.disabled=true);try{await api('/api/v1/sales-returns/'+id+'/'+a,{method:'POST',headers:{'Content-Type':'application/json"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-targets.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/sales-targets?",
+    "snippet": "const load=async()=>{const request=++serial;list.textContent='正在核对净销售目标…';try{const p=new URLSearchParams(new FormData(filter));p.set('limit',50);p.set('offset',offset);if(history)p.set('history','1');const d=await api('/api/v1/sales-targets?'+p);if(epoch!==state.renderEpoch||request!==serial)return;rows=d.items;list.innerHTML='<div class=\"business-scroll\"><table><thead><tr>'+['编号','店铺 / 站点','月份','币种','目标','实际净销售','达成率','差额','版本 / 状态','核对','操作'].map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr>'+[r.target_no,r.store_name+' / '+r.site,r.month,r.currency,r.target_amount,r.actual_net??'—',r.achievement_percent==null?'—':r.achievement_percent+'%',r.gap??'—',r.version+' / '+(r.enabled?'启用':'停用'),r.reason||('原单 '+r.orders+'，回退口径 '+r.fallback_orders)].map(x=>'<td>'+esc(x)+'</td>').join('')+'<td><button data-target-detail=\"'+r.id+'\">核对原单</button><button data-target-history=\"'+i+'\">历史</button>'+(accessCan('sales-orders:write')?'<button data-target-revise=\"'+i+'\">修订<"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-targets.js",
+    "line": 7,
+    "pathLiteral": "/api/v1/sales-targets?target_id=",
+    "snippet": "const show=async(id,ordersOffset=0)=>{const request=++detailSerial;detail.hidden=false;detail.textContent='正在核对原订单…';try{const d=await api('/api/v1/sales-targets?target_id='+id+'&orders_offset='+ordersOffset);if(epoch!==state.renderEpoch||request!==detailSerial)return;if(!d.items.length){detail.textContent='目标版本不存在';return;}const r=d.items[0];detail.innerHTML='<h2>'+esc(r.target_no+' / '+r.month+' / '+r.currency)+' · 版本 '+r.version+'</h2><p>'+esc(r.reason||('实际净销售 '+r.actual_net+' / 目标 '+r.target_amount+' / 回退口径 '+r.fallback_orders+' 单'))+'</p><div class=\"business-scroll\"><table><thead><tr>'+['订单号','下单时间','币种','原始金额','状态','净销售','口径','操作'].map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+d.orders.map(o=>'<tr>'+[o.order_sn,o.order_time,o.currency,o.amount,o.status_text,o.net_cents==null?'—':(o.net_cents/100).toFixed(2),o.fallback?'订单退款状态':'逐单经济明细'].map(x=>'<td>'+esc(x)+'</td>').join('')+'<td><button data-target-order=\"'+o.id+'\">订单详情</button></td></tr>').join('')+'</tbody></table>"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-targets.js",
+    "line": 9,
+    "pathLiteral": "/api/v1/sales-targets",
+    "snippet": "form.onsubmit=async e=>{e.preventDefault();if(saving)return;const body=Object.fromEntries(new FormData(form));body.store_id=Number(body.store_id);body.enabled=body.enabled==='true';body.expected_version=revision;const signature=JSON.stringify(body);if(!pending||pending.signature!==signature)pending={signature,key:crypto.randomUUID()};body.request_key=pending.key;saving=true;const controls=[...form.querySelectorAll('input,select,button')];controls.forEach(x=>x.disabled=true);message.textContent='正在保存…';try{const d=await api('/api/v1/sales-targets',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(epoch!==state.renderEpoch)return;revision=d.data.version;pending=null;message.textContent='已保存 · 版本 '+revision;await load();}catch(error){if(epoch===state.renderEpoch)message.textContent=error.message;}finally{saving=false;controls.forEach(x=>x.disabled=false);}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-workflow.js",
+    "line": 4,
+    "pathLiteral": "/api/v1/sales-orders/",
+    "snippet": "const [row,workflow]=await Promise.all([api('/api/v1/sales-orders/'+id),api('/api/v1/sales-workflow/'+id)]),flow=workflow.data;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-workflow.js",
+    "line": 4,
+    "pathLiteral": "/api/v1/sales-workflow/",
+    "snippet": "const [row,workflow]=await Promise.all([api('/api/v1/sales-orders/'+id),api('/api/v1/sales-workflow/'+id)]),flow=workflow.data;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-workflow.js",
+    "line": 28,
+    "pathLiteral": "/api/v1/sales-workflow/",
+    "snippet": "b.disabled=true;try{const r=await api('/api/v1/sales-workflow/'+id+'/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});await openSalesWorkflow(id);toast(r.data.reused?'相同凭证已执行，未重复扣库存或记账':'销售动作已执行并更新库存/凭证');await loadTable(PAGES[state.page]);}catch(err){d.querySelector('[data-sales-error]').textContent=err.message;b.disabled=false;}"
+  },
+  {
+    "file": "reference/lingxing-erp/static/service-templates.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/service-templates?",
+    "snippet": "const load=async(history=false)=>{output.dataset.history=String(history);const request=++serial;output.textContent='正在读取模板…';try{const params=new URLSearchParams(new FormData(filter));params.set('limit',50);params.set('offset',offset);if(history)params.set('history','1');const data=await api('/api/v1/service-templates?'+params);if(epoch!==state.renderEpoch||request!==serial)return;rows=data.items;output.dataset.history=String(history);output.innerHTML='<div class=\"business-scroll\"><table><thead><tr>'+['模板编号','名称','语言','主题','变量','状态','版本','操作'].map(v=>'<th>'+v+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr>'+[r.template_no,r.name,r.language,r.subject_template,r.variable_names.join('、'),r.enabled?'启用':'停用',r.version].map(v=>'<td>'+esc(v)+'</td>').join('')+'<td><button data-template-preview=\"'+i+'\">内容 / 预览</button><button data-template-history=\"'+i+'\">历史</button>'+(accessCan('customer-tickets:write')?'<button data-template-revise=\"'+i+'\">修订</button>':'')+'</td></tr>').join("
+  },
+  {
+    "file": "reference/lingxing-erp/static/service-templates.js",
+    "line": 7,
+    "pathLiteral": "/api/v1/service-templates",
+    "snippet": "form.onsubmit=async e=>{e.preventDefault();if(saving)return;const body=Object.fromEntries(new FormData(form));body.enabled=body.enabled==='true';body.expected_version=revision;const signature=JSON.stringify(body);if(!pending||pending.signature!==signature)pending={signature,key:crypto.randomUUID()};body.request_key=pending.key;saving=true;const controls=[...form.querySelectorAll('button,input,select,textarea')];controls.forEach(el=>el.disabled=true);message.textContent='正在保存…';try{const result=await api('/api/v1/service-templates',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(epoch!==state.renderEpoch)return;revision=result.data.version;pending=null;message.textContent='已保存 · 版本 '+revision;offset=0;await load();}catch(error){if(epoch===state.renderEpoch)message.textContent=error.message;}finally{saving=false;controls.forEach(el=>el.disabled=false);}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/service-templates.js",
+    "line": 8,
+    "pathLiteral": "/api/v1/service-templates/preview",
+    "snippet": "const showPreview=row=>{preview.hidden=false;preview.innerHTML='<h2>'+esc(row.name)+' · 版本 '+row.version+'</h2><p>'+esc(row.subject_template)+'</p><pre class=\"service-preserve-text\">'+esc(row.body_template)+'</pre><form id=\"template-preview-form\" class=\"business-filter\"><label>原订单ID<input name=\"order_id\" type=\"number\" min=\"1\" required></label><label>SKU（多SKU订单填写）<input name=\"sku\" maxlength=\"100\"></label><button class=\"primary\">生成预览</button></form><div id=\"template-preview-result\" aria-live=\"polite\"></div>';preview.scrollIntoView({block:'nearest'});let loading=false;$('#template-preview-form').onsubmit=async e=>{e.preventDefault();if(loading)return;loading=true;const f=e.currentTarget,button=f.querySelector('button'),target=$('#template-preview-result'),body=Object.fromEntries(new FormData(f));body.order_id=Number(body.order_id);body.template_id=row.id;if(!body.sku)delete body.sku;button.disabled=true;target.textContent='正在生成预览…';try{const result=await api('/api/v1/service-templates/pre"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stock-extensions.js",
+    "line": 12,
+    "pathLiteral": "/api/v1/stock/",
+    "snippet": "try{const result=await api('/api/v1/stock/'+resource+'/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=result.data;"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stock-extensions.js",
+    "line": 18,
+    "pathLiteral": "/api/v1/stock/",
+    "snippet": "try{const d=await api('/api/v1/stock/'+kind+'?limit=50&offset='+offset);const headers=kind==='balances'?['批次','SKU','仓库','总库存','可用','次品','其他不可用（历史未细分）']:['出库单号','源仓','目的仓','状态','在途数量','发出时间','接收时间'];"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 5,
+    "pathLiteral": "/api/v1/stock-counts?view=summary&limit=200&q=",
+    "snippet": "const load=async()=>{const d=await api('/api/v1/stock-counts?view=summary&limit=200&q='+encodeURIComponent($('#count-query').value));if(epoch!==state.renderEpoch)return;$('#count-list').innerHTML='<div style=\"overflow:auto\"><table><thead><tr><th>单号</th><th>仓库</th><th>状态</th><th>差异</th><th>创建人</th><th>更新时间</th><th>操作</th></tr></thead><tbody>'+d.items.map(r=>'<tr><td>'+esc(r.count_no)+'</td><td>'+esc(r.warehouse_name)+'</td><td>'+esc(r.state)+'</td><td>'+r.totals.delta_quantity+'</td><td>'+esc(r.created_by)+'</td><td>'+esc(r.updated_at)+'</td><td><button data-count-open=\"'+r.id+'\">查看 / 处理</button></td></tr>').join('')+'</tbody></table></div><p>共 '+d.total+' 条，当前显示最多200条，请用单号搜索。</p>';};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/stock-counts/",
+    "snippet": "async function detail(id){const r=await api('/api/v1/stock-counts/'+id);if(epoch!==state.renderEpoch)return;const editable=['draft','rejected'].includes(r.state);const actions={draft:['submit','cancel'],rejected:['submit','cancel'],submitted:['approve','reject','cancel'],approved:['post','cancel'],posted:['reverse']}[r.state]||[];const names={submit:'提交审批',approve:'审批通过',reject:'驳回',post:'确认差异过账',reverse:'补偿冲销',cancel:'取消盘点'};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 10,
+    "pathLiteral": "/api/v1/stock-counts/",
+    "snippet": "$('#count-edit').onsubmit=async e=>{e.preventDefault();try{const counts=[...root.querySelectorAll('[data-count-line]')].map(el=>({inventory_id:Number(el.dataset.countLine),good:Number(el.querySelector('[data-count-good]').value),defective:Number(el.querySelector('[data-count-bad]').value)}));await api('/api/v1/stock-counts/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({revision:r.revision,counts,reason:$('#count-edit [name=\"reason\"]').value})});await load();await detail(id);$('#count-error').textContent='';}catch(e){if(epoch===state.renderEpoch&&$('#count-error'))$('#count-error').textContent=e.message;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 12,
+    "pathLiteral": "/api/v1/stock-counts/",
+    "snippet": "$('#count-panel').onclick=async e=>{const el=e.target.closest('[data-count-action]');if(!el)return;try{await api('/api/v1/stock-counts/'+id+'/'+el.dataset.countAction,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({revision:r.revision,reason:$('#count-action-reason').value})});await load();await detail(id);$('#count-error').textContent='';}catch(e){if(epoch===state.renderEpoch&&$('#count-error'))$('#count-error').textContent=e.message;}};"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 14,
+    "pathLiteral": "/api/v1/warehouses?limit=200",
+    "snippet": "root.onclick=async e=>{const open=e.target.closest('[data-count-open]');if(open){try{await detail(Number(open.dataset.countOpen));}catch(e){if(epoch===state.renderEpoch&&$('#count-error'))$('#count-error').textContent=e.message;}return;}if(e.target.closest('[data-count-search]')){await load();return;}if(e.target.closest('[data-count-new]')){try{const d=await api('/api/v1/warehouses?limit=200');$('#count-panel').innerHTML='<form id=\"count-create\"><h2>新建仓库盘点快照</h2><label>盘点单号<input name=\"count_no\" required maxlength=\"80\"></label><label>仓库<select name=\"warehouse_id\">'+d.items.filter(w=>w.status_text!=='停用').map(w=>'<option value=\"'+w.id+'\">'+esc(w.name)+'</option>').join('')+'</select></label><label>盘点原因<input name=\"reason\" required minlength=\"3\" maxlength=\"500\"></label><button type=\"submit\" class=\"primary\">创建快照</button></form>';$('#count-create').onsubmit=async e=>{e.preventDefault();try{const f=new FormData(e.target);const r=await api('/api/v1/stock-counts',{method:'POST',headers:{'Cont"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "line": 14,
+    "pathLiteral": "/api/v1/stock-counts",
+    "snippet": "root.onclick=async e=>{const open=e.target.closest('[data-count-open]');if(open){try{await detail(Number(open.dataset.countOpen));}catch(e){if(epoch===state.renderEpoch&&$('#count-error'))$('#count-error').textContent=e.message;}return;}if(e.target.closest('[data-count-search]')){await load();return;}if(e.target.closest('[data-count-new]')){try{const d=await api('/api/v1/warehouses?limit=200');$('#count-panel').innerHTML='<form id=\"count-create\"><h2>新建仓库盘点快照</h2><label>盘点单号<input name=\"count_no\" required maxlength=\"80\"></label><label>仓库<select name=\"warehouse_id\">'+d.items.filter(w=>w.status_text!=='停用').map(w=>'<option value=\"'+w.id+'\">'+esc(w.name)+'</option>').join('')+'</select></label><label>盘点原因<input name=\"reason\" required minlength=\"3\" maxlength=\"500\"></label><button type=\"submit\" class=\"primary\">创建快照</button></form>';$('#count-create').onsubmit=async e=>{e.preventDefault();try{const f=new FormData(e.target);const r=await api('/api/v1/stock-counts',{method:'POST',headers:{'Cont"
+  },
+  {
+    "file": "reference/lingxing-erp/static/supplier-quotes.js",
+    "line": 6,
+    "pathLiteral": "/api/v1/supplier-quotes?",
+    "snippet": "const load=async(history=false)=>{const request=++serial;output.textContent='正在读取报价…';try{const params=new URLSearchParams(new FormData(filter));params.set('limit',50);params.set('offset',offset);if(history)params.set('history','1');const data=await api('/api/v1/supplier-quotes?'+params);if(epoch!==state.renderEpoch||serial!==request)return;records=data.items;output.innerHTML='<div class=\"business-scroll\"><table><thead><tr>'+['报价单号','供应商','SKU','产品','币种','含税单价','起订量','起订金额','交期（天）','有效期','状态','版本','操作'].map(s=>'<th>'+s+'</th>').join('')+'</tr></thead><tbody>'+records.map((r,i)=>'<tr>'+[r.quote_no,r.supplier_name,r.sku,r.product_name,r.currency,r.unit_price,r.minimum_quantity,r.minimum_amount,r.lead_days,r.valid_from+' ～ '+r.valid_to,{effective:'有效',future:'未生效',expired:'已过期',disabled:'停用'}[r.status],r.version].map(s=>'<td>'+esc(s)+'</td>').join('')+'<td><button data-quote-history=\"'+i+'\">历史</button>'+(accessCan('costs:write')?'<button data-quote-revise=\"'+i+'\">修订</button>':'')+'<button"
+  },
+  {
+    "file": "reference/lingxing-erp/static/supplier-quotes.js",
+    "line": 14,
+    "pathLiteral": "/api/v1/supplier-quotes",
+    "snippet": "try{const data=await api('/api/v1/supplier-quotes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(epoch!==state.renderEpoch)return;revision=data.data.version;pending=null;message.textContent='已保存 · 版本 '+revision;offset=0;await load();}catch(error){if(epoch===state.renderEpoch)message.textContent=error.message;}finally{saving=false;controls.forEach(([el,disabled])=>el.disabled=disabled);}"
+  }
+]

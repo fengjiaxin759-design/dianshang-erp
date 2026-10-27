@@ -1,0 +1,47 @@
+/* Login-account administration is separate from historical business user records. */
+let accessIdentity=null;
+function accessCan(permission){return !!accessIdentity&&(accessIdentity.permissions.includes('*')||accessIdentity.permissions.includes(permission));}
+let accessIdentityRequest=null;
+async function accessLoadIdentity(){
+ if(accessIdentityRequest)return accessIdentityRequest;
+ accessIdentityRequest=(async()=>{try{const data=await api('/api/v1/me');accessIdentity=data.data;$('#account-button').textContent=accessIdentity.username+' · '+accessIdentity.role_name;}catch(e){accessIdentity=null;}finally{accessIdentityRequest=null;}accessApplyPermissions();})();
+ return accessIdentityRequest;
+}
+function accessScoped(){return !!accessIdentity&&!accessCan('*')&&accessIdentity.scope!==null;}
+function accessScopeNotice(){}
+function accessApplyPermissions(){
+ accessScopeNotice();
+ if(!accessIdentity)return;
+ document.querySelectorAll('[data-create-receipt]').forEach(el=>{el.disabled=!accessCan('supplier-deliveries:write')||!accessCan('supplier-deliveries:read');});
+ const page=PAGES[state.page];if(!page)return;
+ document.querySelectorAll('[data-create],[data-edit],[data-delete],[data-workflow],[data-stock-confirm],[data-stock-batch],[data-import],[data-copy],[data-bulk-field],[data-stock-ledger]').forEach(el=>{
+  let permission=page.resource+':write';if(el.hasAttribute('data-delete'))permission=page.resource+':delete';if(el.dataset.workflow){const actions={'purchase-submit':['purchase-orders','submit'],'purchase-place-order':['purchase-orders','place-order'],'purchase-void':['purchase-orders','void'],'purchase':['replenishment','create-purchase'],'receive':['supplier-deliveries','receive'],'approve':['approvals','decide'],'reject':['approvals','decide']};const pair=actions[el.dataset.workflow]||[page.resource,el.dataset.workflow];permission=pair[0]+':action:'+pair[1];}if(el.hasAttribute('data-stock-confirm')||el.hasAttribute('data-stock-batch'))permission=page.resource+':action:confirm';if(el.hasAttribute('data-stock-ledger'))permission='stock:read';el.disabled=!accessCan(permission);if(el.disabled)el.title='当前账号无此操作权限（服务端强制校验）';
+ });
+ document.querySelectorAll('[data-sales-action],[data-fba-action]').forEach(el=>{const permission=el.dataset.salesAction?'sales-orders:action:'+el.dataset.salesAction:(el.dataset.fbaResource||page.resource)+':action:'+el.dataset.fbaAction;el.disabled=!accessCan(permission);});
+ if(!accessCan('costs:read'))document.querySelectorAll('[data-field]').forEach(el=>{if(/cost|profit|unit_price|freight|supplier_quote/.test(el.dataset.field)){el.disabled=true;el.closest('.editor-field')?.setAttribute('hidden','');}});
+}
+document.addEventListener('DOMContentLoaded',()=>{new MutationObserver(()=>accessApplyPermissions()).observe(document.querySelector('#workspace'),{childList:true,subtree:true});new MutationObserver(()=>accessApplyPermissions()).observe(document.querySelector('#record-fields'),{childList:true,subtree:true});});
+async function renderAccessAdmin(kind='accounts'){
+ const epoch=state.renderEpoch;
+ $('#workspace').innerHTML='<section class="report-page"><h1>登录账号与角色</h1><p>正在验证管理员权限…</p></section>';
+ try{
+  await accessLoadIdentity();if(epoch!==state.renderEpoch)return;if(!accessCan('*'))throw Error('仅原超级管理员可维护账号与角色；业务员工资料不会授予登录权限。');
+  async function scopeOptions(resource){let items=[],offset=0;while(true){const page=await api('/api/v1/'+resource+'?limit=200&offset='+offset);items.push(...page.items);offset+=page.items.length;if(offset>=page.total)break;if(!page.items.length)throw Error('范围选项加载不完整，请刷新后重试');}return items;}
+  const [accounts,roles,catalog,shops,warehouses]=await Promise.all([api('/api/v1/access/accounts'),api('/api/v1/access/roles'),api('/api/v1/access/catalog'),scopeOptions('store-authorizations'),scopeOptions('warehouses')]);
+  if(epoch!==state.renderEpoch)return;
+  const scopeSummary=row=>row.scope===null?'不限店铺 / 仓库':('店铺 '+(row.scope?.shops||[]).length+' 项 / 仓库 '+(row.scope?.warehouses||[]).length+' 项');
+  function scopeSelect(name,label,items,selected){const known=new Set(items.map(item=>item.id));return '<label>'+label+'（可多选）<select name="'+name+'" multiple size="5">'+items.map(item=>'<option value="'+item.id+'" '+(selected.includes(item.id)?'selected':'')+'>'+esc(item.store_name||item.name)+' · ID '+item.id+'</option>').join('')+selected.filter(id=>!known.has(id)).map(id=>'<option value="'+id+'" selected>已失效范围 ID '+id+'（请移除后保存）</option>').join('')+'</select></label>';}
+  function scopeEditor(row){const scope=row.scope||{shops:[],warehouses:[]};return '<fieldset class="access-scope-fields"><legend>店铺 / 仓库数据范围</legend><label>范围模式<select name="scope_mode"><option value="restricted">限制为以下选择（默认）</option><option value="unrestricted" '+(row.scope===null?'selected':'')+'>不限店铺 / 仓库（高权限，请谨慎）</option></select></label>'+scopeSelect('scope_shops','允许店铺',shops,scope.shops||[])+scopeSelect('scope_warehouses','允许仓库',warehouses,scope.warehouses||[])+'<p>按住 Ctrl / Command 可多选。空选择拒绝对应范围，不代表全部；同时带店铺与仓库的业务须两者均获授权，调拨须同时拥有两端仓库。仅管理员可修改范围，不限范围也不增加角色动作权限。无法可靠判定范围的跨业务接口对受限账号返回 403。</p></fieldset>';}
+  const root=$('#workspace');root.innerHTML='<section class="report-page"><h1>登录账号与角色</h1><p>独立登录账号 · 角色动作权限 + 店铺 / 仓库行级范围。原超级管理员不受范围限制且不能在此修改。密码不回显；重置密码、停用、换角色撤销旧会话；范围撤销对现有会话立即生效。</p><button data-access-tab="accounts">登录账号</button><button data-access-tab="roles">角色权限</button><button class="primary" data-access-new>新增'+(kind==='accounts'?'账号':'角色')+'</button><div id="access-list"></div><div id="access-editor"></div><p id="access-error" role="alert"></p></section>';
+  const rows=kind==='accounts'?accounts.items:roles.items;
+  $('#access-list').innerHTML='<table><thead><tr><th>标识</th><th>名称</th><th>角色/权限</th><th>数据范围</th><th>状态</th><th>操作</th></tr></thead><tbody>'+rows.map(row=>'<tr><td>'+esc(row.username||row.id)+'</td><td>'+esc(row.name)+'</td><td>'+esc(row.role_id||row.permissions.join(', '))+'</td><td>'+esc(kind==='accounts'?scopeSummary(row):'由账号维护')+'</td><td>'+esc(kind==='accounts'?(row.enabled?'启用':'停用'):'生效')+'</td><td><button data-access-edit="'+esc(row.id)+'">编辑'+(kind==='accounts'?' / 重置密码':'')+'</button></td></tr>').join('')+'</tbody></table>';
+  function editor(row){
+   const edit=!!row;row=row||{};$('#access-editor').innerHTML='<form id="access-form"><h2>'+(edit?'编辑':'新增')+(kind==='accounts'?'登录账号':'角色')+'</h2>'+(kind==='accounts'?'<label>账号<input name="username" required value="'+esc(row.username)+'"></label><label>姓名<input name="name" required value="'+esc(row.name)+'"></label><label>部门<input name="department" value="'+esc(row.department)+'"></label><label>角色<select name="role_id">'+roles.items.map(role=>'<option value="'+esc(role.id)+'" '+(row.role_id===role.id?'selected':'')+'>'+esc(role.name)+'</option>').join('')+'</select></label><label>状态<select name="enabled"><option value="1">启用</option><option value="0" '+(row.enabled===0?'selected':'')+'>停用</option></select></label><label>'+(edit?'新密码（留空不修改）':'初始密码')+'<input type="password" name="password" autocomplete="new-password" '+(edit?'':'required')+' minlength="12" maxlength="128"></label><p>12—128位，大小写、数字、符号至少三类；请通过安全渠道交给测试员。</p>'+scopeEditor(row):'<label>角色标识<input name="id" required value="'+esc(row.id)+'" '+(edit?'readonly':'')+'></label><label>角色名称<input name="name" required value="'+esc(row.name)+'"></label><fieldset><legend>可执行权限（未勾选即拒绝）</legend>'+Object.entries(catalog.permissions).map(([key,label])=>'<label><input type="checkbox" name="permission" value="'+esc(key)+'" '+((row.permissions||[]).includes(key)?'checked':'')+'>'+esc(label)+' <code>'+esc(key)+'</code></label>').join('')+'</fieldset>')+'<button class="primary" type="submit">保存'+(kind==='accounts'?'账号':'角色')+'</button><button type="button" data-access-cancel>取消</button></form>';
+   if(kind==='accounts'){const form=$('#access-form'),mode=form.elements.scope_mode;const updateScope=()=>{form.elements.scope_shops.disabled=mode.value==='unrestricted';form.elements.scope_warehouses.disabled=mode.value==='unrestricted';};mode.onchange=updateScope;updateScope();}
+   $('#access-form').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget,fd=new FormData(form);let body=Object.fromEntries(fd.entries());if(kind==='accounts'){body.enabled=Number(body.enabled);body.scope=body.scope_mode==='unrestricted'?null:{shops:fd.getAll('scope_shops').map(Number),warehouses:fd.getAll('scope_warehouses').map(Number)};delete body.scope_mode;delete body.scope_shops;delete body.scope_warehouses;if(edit&&!body.password)delete body.password;}else{body.permissions=fd.getAll('permission');delete body.permission;}
+    try{await api('/api/v1/access/'+kind+(edit?'/'+encodeURIComponent(row.id):''),{method:edit?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});form.reset();toast('保存成功');await renderAccessAdmin(kind);}catch(e){$('#access-error').textContent=e.message;}
+   };
+  }
+  root.onclick=event=>{const el=event.target.closest('button');if(!el)return;if(el.dataset.accessTab)renderAccessAdmin(el.dataset.accessTab);if(el.hasAttribute('data-access-new'))editor();if(el.dataset.accessEdit)editor(rows.find(r=>String(r.id)===el.dataset.accessEdit));if(el.hasAttribute('data-access-cancel'))$('#access-editor').innerHTML='';};
+ }catch(e){if(epoch!==state.renderEpoch)return;$('#workspace').innerHTML='<section class="report-page"><h1>登录账号与角色</h1><p role="alert">'+esc(e.message)+'</p></section>';}
+}

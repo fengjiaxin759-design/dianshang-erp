@@ -1,0 +1,203 @@
+[
+  {
+    "id": "product",
+    "title": "产品",
+    "menuPages": [
+      "product-management",
+      "product-add",
+      "product-attributes",
+      "product-category",
+      "brand-management",
+      "product-tags",
+      "listing",
+      "supplier-quotation",
+      "product-archive",
+      "product-operation-log",
+      "replenishment"
+    ]
+  },
+  {
+    "id": "sales",
+    "title": "销售",
+    "menuPages": [
+      "sales-overview",
+      "listing-pairing",
+      "listing-quality",
+      "promotion-management",
+      "sales-orders",
+      "after-sales",
+      "refund-orders",
+      "order-rules",
+      "operation-logs"
+    ]
+  },
+  {
+    "id": "fba",
+    "title": "FBA",
+    "menuPages": [
+      "fba-plans",
+      "fba-shipments",
+      "fba-delivery-orders",
+      "overseas-plans",
+      "fba-dashboard",
+      "fba-inventory",
+      "fba-reconciliation",
+      "fba-labels"
+    ]
+  },
+  {
+    "id": "purchase",
+    "title": "采购",
+    "menuPages": [
+      "purchase-plans",
+      "purchase-orders",
+      "purchase-amendments",
+      "purchase-approvals",
+      "receiving",
+      "supplier-management",
+      "purchase-supplier-quotation",
+      "supplier-portal",
+      "purchase-price",
+      "purchase-outsourcing",
+      "purchase-1688",
+      "purchase-requests"
+    ]
+  },
+  {
+    "id": "warehouse",
+    "title": "仓库",
+    "menuPages": [
+      "inventory",
+      "warehouse-batches",
+      "stocktaking",
+      "stock-adjustment",
+      "inbounds",
+      "outbounds",
+      "transfer-orders",
+      "quality-inspection",
+      "scan-receiving",
+      "scan-outbound",
+      "warehouses"
+    ]
+  },
+  {
+    "id": "logistics",
+    "title": "物流",
+    "menuPages": [
+      "shipments",
+      "logistics-tracking",
+      "first-leg-orders",
+      "freight-calculator",
+      "logistics-channel",
+      "carrier-management",
+      "logistics-cost",
+      "logistics-aging"
+    ]
+  },
+  {
+    "id": "ads",
+    "title": "广告",
+    "menuPages": [
+      "ad-dashboard",
+      "ad-campaigns",
+      "ad-performance",
+      "ad-budget",
+      "ad-keywords",
+      "ad-search-terms",
+      "ad-placement",
+      "ad-structure"
+    ]
+  },
+  {
+    "id": "service",
+    "title": "客服",
+    "menuPages": [
+      "tickets",
+      "message-center",
+      "after-sales-tickets",
+      "email-statistics",
+      "rma-management",
+      "review-management",
+      "feedback-management",
+      "service-templates"
+    ]
+  },
+  {
+    "id": "finance",
+    "title": "财务",
+    "menuPages": [
+      "order-profit",
+      "settlement-profit",
+      "settlement-center",
+      "performance-report",
+      "finance-flow",
+      "accounts-receivable",
+      "accounts-payable",
+      "payment-requests",
+      "cost-center",
+      "invoice-management"
+    ]
+  },
+  {
+    "id": "statistics",
+    "title": "统计",
+    "menuPages": [
+      "sales-stat",
+      "sales-ranking",
+      "product-performance",
+      "store-performance",
+      "target-management",
+      "inventory-report",
+      "inventory-aging",
+      "replenishment-analysis",
+      "purchase-analysis"
+    ]
+  },
+  {
+    "id": "bi",
+    "title": "BI",
+    "menuPages": [
+      "business-analysis",
+      "profit-dashboard",
+      "bi-data-model",
+      "bi-analysis",
+      "bi-app-builder",
+      "bi-screen",
+      "bi-report-center"
+    ]
+  },
+  {
+    "id": "tools",
+    "title": "工具",
+    "menuPages": [
+      "manual-testing",
+      "batch-tools",
+      "download-center",
+      "import-center",
+      "api-docs",
+      "chatgpt-copy",
+      "review-analysis",
+      "competitor-monitor",
+      "keyword-tool"
+    ]
+  },
+  {
+    "id": "settings",
+    "title": "设置",
+    "menuPages": [
+      "store-auth",
+      "login-accounts",
+      "users",
+      "role-permissions",
+      "data-permissions",
+      "department-settings",
+      "employee-settings",
+      "warehouse-settings",
+      "system-settings",
+      "currency-settings",
+      "approval-settings",
+      "notification-settings",
+      "audit-logs"
+    ]
+  }
+]

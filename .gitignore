@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/
+.venv/
+analysis/rea-application.json
+analysis/rea-stderr.log

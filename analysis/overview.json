@@ -1,0 +1,25 @@
+{
+  "modules": 13,
+  "menuEntries": 123,
+  "remainingAliasedPages": 57,
+  "missingPageDefinitions": 0,
+  "apiPaths": 179,
+  "apiOperations": 253,
+  "methods": {
+    "GET": 103,
+    "POST": 104,
+    "PUT": 25,
+    "DELETE": 21
+  },
+  "schemas": 127,
+  "uiPaths": 45,
+  "writeSchemas": 21,
+  "javascriptFiles": 27,
+  "apiLiteralEvidence": 101,
+  "openapiInfo": {
+    "title": "模拟ERP接口文档",
+    "version": "5.1.0",
+    "description": "独立模拟系统，非领星官方产品。仅对本文列出的本地契约负责；app_key/timestamp/sign不进行官方签名校验。生产使用已有管理员账号和密码换取本地token。\n第五轮账号店铺/仓库行级范围：详见 docs/ROW-SCOPE.md。支持范围列表先过滤后计数与分页；未知跨业务接口显式403。",
+    "x-performance-release": "20260916-performance-r1"
+  }
+}

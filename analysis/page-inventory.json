@@ -1,0 +1,986 @@
+[
+  {
+    "id": "product-management",
+    "module": "product",
+    "title": "产品管理",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": null
+  },
+  {
+    "id": "product-add",
+    "module": "product",
+    "title": "添加产品",
+    "type": "product-form",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "product-attributes",
+    "module": "product",
+    "title": "产品属性",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": "product-management"
+  },
+  {
+    "id": "product-category",
+    "module": "product",
+    "title": "产品分类",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": "product-management"
+  },
+  {
+    "id": "brand-management",
+    "module": "product",
+    "title": "品牌管理",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": "product-management"
+  },
+  {
+    "id": "product-tags",
+    "module": "product",
+    "title": "产品标签",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": "product-management"
+  },
+  {
+    "id": "listing",
+    "module": "product",
+    "title": "Listing",
+    "type": "list",
+    "resource": "listings",
+    "aliasOf": null
+  },
+  {
+    "id": "supplier-quotation",
+    "module": "product",
+    "title": "供应商报价",
+    "type": "supplier-quotes",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "product-archive",
+    "module": "product",
+    "title": "产品归档",
+    "type": "list",
+    "resource": "products",
+    "aliasOf": "product-management"
+  },
+  {
+    "id": "product-operation-log",
+    "module": "product",
+    "title": "产品操作日志",
+    "type": "list",
+    "resource": "audit-logs",
+    "aliasOf": "operation-logs"
+  },
+  {
+    "id": "replenishment",
+    "module": "product",
+    "title": "补货建议",
+    "type": "list",
+    "resource": "replenishment",
+    "aliasOf": null
+  },
+  {
+    "id": "sales-overview",
+    "module": "sales",
+    "title": "销售总览",
+    "type": "sales-report",
+    "resource": null,
+    "aliasOf": "sales-stat"
+  },
+  {
+    "id": "listing-pairing",
+    "module": "sales",
+    "title": "Listing配对",
+    "type": "list",
+    "resource": "listings",
+    "aliasOf": "listing"
+  },
+  {
+    "id": "listing-quality",
+    "module": "sales",
+    "title": "Listing质量",
+    "type": "list",
+    "resource": "listings",
+    "aliasOf": "listing"
+  },
+  {
+    "id": "promotion-management",
+    "module": "sales",
+    "title": "促销活动",
+    "type": "sales-policies",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "sales-orders",
+    "module": "sales",
+    "title": "订单列表",
+    "type": "list",
+    "resource": "sales-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "after-sales",
+    "module": "sales",
+    "title": "销售退货",
+    "type": "sales-returns",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "refund-orders",
+    "module": "sales",
+    "title": "退款订单",
+    "type": "sales-returns",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "order-rules",
+    "module": "sales",
+    "title": "订单规则",
+    "type": "sales-policies",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "operation-logs",
+    "module": "sales",
+    "title": "运营日志",
+    "type": "list",
+    "resource": "audit-logs",
+    "aliasOf": null
+  },
+  {
+    "id": "fba-plans",
+    "module": "fba",
+    "title": "FBA发货计划",
+    "type": "list",
+    "resource": "shipping-plans",
+    "aliasOf": null
+  },
+  {
+    "id": "fba-shipments",
+    "module": "fba",
+    "title": "FBA货件",
+    "type": "list",
+    "resource": "shipments",
+    "aliasOf": null
+  },
+  {
+    "id": "fba-delivery-orders",
+    "module": "fba",
+    "title": "FBA发货单",
+    "type": "list",
+    "resource": "fba-delivery-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "overseas-plans",
+    "module": "fba",
+    "title": "海外仓发货计划",
+    "type": "list",
+    "resource": "shipping-plans",
+    "aliasOf": "fba-plans"
+  },
+  {
+    "id": "fba-dashboard",
+    "module": "fba",
+    "title": "FBA总览",
+    "type": "inventory-report",
+    "resource": null,
+    "aliasOf": "inventory-report"
+  },
+  {
+    "id": "fba-inventory",
+    "module": "fba",
+    "title": "FBA库存",
+    "type": "list",
+    "resource": "inventory",
+    "aliasOf": "inventory"
+  },
+  {
+    "id": "fba-reconciliation",
+    "module": "fba",
+    "title": "FBA对账",
+    "type": "profit-report",
+    "resource": "finance",
+    "aliasOf": "settlement-profit"
+  },
+  {
+    "id": "fba-labels",
+    "module": "fba",
+    "title": "标签打印",
+    "type": "list",
+    "resource": "fba-delivery-orders",
+    "aliasOf": "fba-delivery-orders"
+  },
+  {
+    "id": "purchase-plans",
+    "module": "purchase",
+    "title": "采购计划",
+    "type": "list",
+    "resource": "replenishment",
+    "aliasOf": null
+  },
+  {
+    "id": "purchase-orders",
+    "module": "purchase",
+    "title": "采购单",
+    "type": "list",
+    "resource": "purchase-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "purchase-amendments",
+    "module": "purchase",
+    "title": "采购变更",
+    "type": "purchase-amendments",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "purchase-approvals",
+    "module": "purchase",
+    "title": "审批工作台",
+    "type": "list",
+    "resource": "approvals",
+    "aliasOf": null
+  },
+  {
+    "id": "receiving",
+    "module": "purchase",
+    "title": "收货单",
+    "type": "list",
+    "resource": "supplier-deliveries",
+    "aliasOf": null
+  },
+  {
+    "id": "supplier-management",
+    "module": "purchase",
+    "title": "供应商",
+    "type": "list",
+    "resource": "suppliers",
+    "aliasOf": null
+  },
+  {
+    "id": "purchase-supplier-quotation",
+    "module": "purchase",
+    "title": "供应商报价",
+    "type": "supplier-quotes",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "supplier-portal",
+    "module": "purchase",
+    "title": "供应商门户",
+    "type": "list",
+    "resource": "suppliers",
+    "aliasOf": "supplier-management"
+  },
+  {
+    "id": "purchase-price",
+    "module": "purchase",
+    "title": "采购价管理",
+    "type": "list",
+    "resource": "purchase-orders",
+    "aliasOf": "purchase-orders"
+  },
+  {
+    "id": "purchase-outsourcing",
+    "module": "purchase",
+    "title": "委外订单",
+    "type": "list",
+    "resource": "purchase-orders",
+    "aliasOf": "purchase-orders"
+  },
+  {
+    "id": "purchase-1688",
+    "module": "purchase",
+    "title": "1688下单",
+    "type": "list",
+    "resource": "purchase-orders",
+    "aliasOf": "purchase-orders"
+  },
+  {
+    "id": "purchase-requests",
+    "module": "purchase",
+    "title": "请款池",
+    "type": "list",
+    "resource": "finance",
+    "aliasOf": "finance-flow"
+  },
+  {
+    "id": "inventory",
+    "module": "warehouse",
+    "title": "库存明细",
+    "type": "list",
+    "resource": "inventory",
+    "aliasOf": null
+  },
+  {
+    "id": "warehouse-batches",
+    "module": "warehouse",
+    "title": "库存批次",
+    "type": "list",
+    "resource": "inventory",
+    "aliasOf": "inventory"
+  },
+  {
+    "id": "stocktaking",
+    "module": "warehouse",
+    "title": "库存盘点单",
+    "type": "stocktaking",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "stock-adjustment",
+    "module": "warehouse",
+    "title": "盘点差异调整",
+    "type": "stocktaking",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "inbounds",
+    "module": "warehouse",
+    "title": "入库单",
+    "type": "list",
+    "resource": "inbound-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "outbounds",
+    "module": "warehouse",
+    "title": "出库单",
+    "type": "list",
+    "resource": "outbound-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "transfer-orders",
+    "module": "warehouse",
+    "title": "调拨单",
+    "type": "list",
+    "resource": "outbound-orders",
+    "aliasOf": "outbounds"
+  },
+  {
+    "id": "quality-inspection",
+    "module": "warehouse",
+    "title": "质检单",
+    "type": "list",
+    "resource": "inbound-orders",
+    "aliasOf": "inbounds"
+  },
+  {
+    "id": "scan-receiving",
+    "module": "warehouse",
+    "title": "扫码收货",
+    "type": "list",
+    "resource": "supplier-deliveries",
+    "aliasOf": "receiving"
+  },
+  {
+    "id": "scan-outbound",
+    "module": "warehouse",
+    "title": "扫描出库",
+    "type": "list",
+    "resource": "outbound-orders",
+    "aliasOf": "outbounds"
+  },
+  {
+    "id": "warehouses",
+    "module": "warehouse",
+    "title": "仓库列表",
+    "type": "list",
+    "resource": "warehouses",
+    "aliasOf": null
+  },
+  {
+    "id": "shipments",
+    "module": "logistics",
+    "title": "发货计划",
+    "type": "list",
+    "resource": "shipments",
+    "aliasOf": null
+  },
+  {
+    "id": "logistics-tracking",
+    "module": "logistics",
+    "title": "物流跟踪",
+    "type": "list",
+    "resource": "supplier-deliveries",
+    "aliasOf": null
+  },
+  {
+    "id": "first-leg-orders",
+    "module": "logistics",
+    "title": "头程物流单",
+    "type": "list",
+    "resource": "shipments",
+    "aliasOf": "shipments"
+  },
+  {
+    "id": "freight-calculator",
+    "module": "logistics",
+    "title": "运费试算",
+    "type": "freight-quote",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "logistics-channel",
+    "module": "logistics",
+    "title": "物流渠道",
+    "type": "logistics-directory",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "carrier-management",
+    "module": "logistics",
+    "title": "承运商管理",
+    "type": "logistics-directory",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "logistics-cost",
+    "module": "logistics",
+    "title": "物流费用",
+    "type": "logistics-costs",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "logistics-aging",
+    "module": "logistics",
+    "title": "物流时效",
+    "type": "list",
+    "resource": "supplier-deliveries",
+    "aliasOf": "logistics-tracking"
+  },
+  {
+    "id": "ad-dashboard",
+    "module": "ads",
+    "title": "广告仪表盘",
+    "type": "ad-report",
+    "resource": null,
+    "aliasOf": "ad-performance"
+  },
+  {
+    "id": "ad-campaigns",
+    "module": "ads",
+    "title": "广告活动",
+    "type": "list",
+    "resource": "ad-campaigns",
+    "aliasOf": null
+  },
+  {
+    "id": "ad-performance",
+    "module": "ads",
+    "title": "广告表现",
+    "type": "ad-report",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "ad-budget",
+    "module": "ads",
+    "title": "预算管理",
+    "type": "list",
+    "resource": "ad-campaigns",
+    "aliasOf": "ad-campaigns"
+  },
+  {
+    "id": "ad-keywords",
+    "module": "ads",
+    "title": "广告关键词",
+    "type": "ad-traffic",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "ad-search-terms",
+    "module": "ads",
+    "title": "搜索词分析",
+    "type": "ad-traffic",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "ad-placement",
+    "module": "ads",
+    "title": "广告位分析",
+    "type": "ad-traffic",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "ad-structure",
+    "module": "ads",
+    "title": "广告结构",
+    "type": "list",
+    "resource": "ad-campaigns",
+    "aliasOf": "ad-campaigns"
+  },
+  {
+    "id": "tickets",
+    "module": "service",
+    "title": "客服工单",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": null
+  },
+  {
+    "id": "message-center",
+    "module": "service",
+    "title": "消息中心",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": null
+  },
+  {
+    "id": "after-sales-tickets",
+    "module": "service",
+    "title": "售后邮件",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": "tickets"
+  },
+  {
+    "id": "email-statistics",
+    "module": "service",
+    "title": "邮件统计",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": "tickets"
+  },
+  {
+    "id": "rma-management",
+    "module": "service",
+    "title": "销售退货 / RMA",
+    "type": "sales-returns",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "review-management",
+    "module": "service",
+    "title": "商品评论",
+    "type": "customer-voice",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "feedback-management",
+    "module": "service",
+    "title": "Feedback管理",
+    "type": "customer-voice",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "service-templates",
+    "module": "service",
+    "title": "邮件模板",
+    "type": "service-templates",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "order-profit",
+    "module": "finance",
+    "title": "订单利润",
+    "type": "profit-report",
+    "resource": "sales-orders",
+    "aliasOf": null
+  },
+  {
+    "id": "settlement-profit",
+    "module": "finance",
+    "title": "结算利润",
+    "type": "profit-report",
+    "resource": "finance",
+    "aliasOf": null
+  },
+  {
+    "id": "settlement-center",
+    "module": "finance",
+    "title": "亚马逊结算中心",
+    "type": "profit-report",
+    "resource": "finance",
+    "aliasOf": "settlement-profit"
+  },
+  {
+    "id": "performance-report",
+    "module": "finance",
+    "title": "业绩报表",
+    "type": "profit-report",
+    "resource": "sales-orders",
+    "aliasOf": "order-profit"
+  },
+  {
+    "id": "finance-flow",
+    "module": "finance",
+    "title": "资金流水",
+    "type": "list",
+    "resource": "finance",
+    "aliasOf": null
+  },
+  {
+    "id": "accounts-receivable",
+    "module": "finance",
+    "title": "应收管理",
+    "type": "account-balances",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "accounts-payable",
+    "module": "finance",
+    "title": "应付管理",
+    "type": "account-balances",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "payment-requests",
+    "module": "finance",
+    "title": "请款管理",
+    "type": "list",
+    "resource": "finance",
+    "aliasOf": "finance-flow"
+  },
+  {
+    "id": "cost-center",
+    "module": "finance",
+    "title": "成本中心",
+    "type": "list",
+    "resource": "finance",
+    "aliasOf": "finance-flow"
+  },
+  {
+    "id": "invoice-management",
+    "module": "finance",
+    "title": "商业发票登记",
+    "type": "commercial-invoices",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "sales-stat",
+    "module": "statistics",
+    "title": "销售统计",
+    "type": "sales-report",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "sales-ranking",
+    "module": "statistics",
+    "title": "销售排行",
+    "type": "sales-report",
+    "resource": null,
+    "aliasOf": "sales-stat"
+  },
+  {
+    "id": "product-performance",
+    "module": "statistics",
+    "title": "产品表现",
+    "type": "sales-report",
+    "resource": null,
+    "aliasOf": "sales-stat"
+  },
+  {
+    "id": "store-performance",
+    "module": "statistics",
+    "title": "店铺表现",
+    "type": "sales-report",
+    "resource": null,
+    "aliasOf": "sales-stat"
+  },
+  {
+    "id": "target-management",
+    "module": "statistics",
+    "title": "目标管理",
+    "type": "sales-targets",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "inventory-report",
+    "module": "statistics",
+    "title": "库存报表",
+    "type": "inventory-report",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "inventory-aging",
+    "module": "statistics",
+    "title": "库龄分析",
+    "type": "inventory-aging",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "replenishment-analysis",
+    "module": "statistics",
+    "title": "补货分析",
+    "type": "inventory-report",
+    "resource": null,
+    "aliasOf": "inventory-report"
+  },
+  {
+    "id": "purchase-analysis",
+    "module": "statistics",
+    "title": "采购分析",
+    "type": "list",
+    "resource": "purchase-orders",
+    "aliasOf": "purchase-orders"
+  },
+  {
+    "id": "business-analysis",
+    "module": "bi",
+    "title": "经营分析",
+    "type": "bi-report",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "profit-dashboard",
+    "module": "bi",
+    "title": "利润看板",
+    "type": "profit-report",
+    "resource": "finance",
+    "aliasOf": null
+  },
+  {
+    "id": "bi-data-model",
+    "module": "bi",
+    "title": "关联数据",
+    "type": "bi-report",
+    "resource": null,
+    "aliasOf": "business-analysis"
+  },
+  {
+    "id": "bi-analysis",
+    "module": "bi",
+    "title": "数据分析",
+    "type": "bi-report",
+    "resource": null,
+    "aliasOf": "business-analysis"
+  },
+  {
+    "id": "bi-app-builder",
+    "module": "bi",
+    "title": "应用创作",
+    "type": "bi-report",
+    "resource": null,
+    "aliasOf": "business-analysis"
+  },
+  {
+    "id": "bi-screen",
+    "module": "bi",
+    "title": "经营大屏",
+    "type": "bi-report",
+    "resource": null,
+    "aliasOf": "business-analysis"
+  },
+  {
+    "id": "bi-report-center",
+    "module": "bi",
+    "title": "报表中心",
+    "type": "profit-report",
+    "resource": "finance",
+    "aliasOf": "profit-dashboard"
+  },
+  {
+    "id": "manual-testing",
+    "module": "tools",
+    "title": "人工测试中心",
+    "type": "manual-testing",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "batch-tools",
+    "module": "tools",
+    "title": "批量工具",
+    "type": "tools",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "download-center",
+    "module": "tools",
+    "title": "下载中心",
+    "type": "tools",
+    "resource": null,
+    "aliasOf": "batch-tools"
+  },
+  {
+    "id": "import-center",
+    "module": "tools",
+    "title": "导入中心",
+    "type": "tools",
+    "resource": null,
+    "aliasOf": "batch-tools"
+  },
+  {
+    "id": "api-docs",
+    "module": "tools",
+    "title": "开放接口",
+    "type": "docs",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "chatgpt-copy",
+    "module": "tools",
+    "title": "ChatGPT文案",
+    "type": "docs",
+    "resource": null,
+    "aliasOf": "api-docs"
+  },
+  {
+    "id": "review-analysis",
+    "module": "tools",
+    "title": "评论分析",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": "tickets"
+  },
+  {
+    "id": "competitor-monitor",
+    "module": "tools",
+    "title": "竞品监控",
+    "type": "list",
+    "resource": "listings",
+    "aliasOf": "listing"
+  },
+  {
+    "id": "keyword-tool",
+    "module": "tools",
+    "title": "关键词工具",
+    "type": "list",
+    "resource": "ad-campaigns",
+    "aliasOf": "ad-keywords"
+  },
+  {
+    "id": "store-auth",
+    "module": "settings",
+    "title": "店铺授权",
+    "type": "list",
+    "resource": "store-authorizations",
+    "aliasOf": null
+  },
+  {
+    "id": "login-accounts",
+    "module": "settings",
+    "title": "登录账号",
+    "type": "access-accounts",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "users",
+    "module": "settings",
+    "title": "用户与角色",
+    "type": "list",
+    "resource": "users",
+    "aliasOf": null
+  },
+  {
+    "id": "role-permissions",
+    "module": "settings",
+    "title": "角色权限",
+    "type": "access-roles",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "data-permissions",
+    "module": "settings",
+    "title": "数据权限",
+    "type": "access-roles",
+    "resource": null,
+    "aliasOf": "role-permissions"
+  },
+  {
+    "id": "department-settings",
+    "module": "settings",
+    "title": "部门管理",
+    "type": "list",
+    "resource": "users",
+    "aliasOf": "users"
+  },
+  {
+    "id": "employee-settings",
+    "module": "settings",
+    "title": "员工管理",
+    "type": "list",
+    "resource": "users",
+    "aliasOf": "users"
+  },
+  {
+    "id": "warehouse-settings",
+    "module": "settings",
+    "title": "仓库设置",
+    "type": "list",
+    "resource": "warehouses",
+    "aliasOf": null
+  },
+  {
+    "id": "system-settings",
+    "module": "settings",
+    "title": "业务配置",
+    "type": "list",
+    "resource": "warehouses",
+    "aliasOf": "warehouse-settings"
+  },
+  {
+    "id": "currency-settings",
+    "module": "settings",
+    "title": "币种汇率",
+    "type": "exchange-rates",
+    "resource": null,
+    "aliasOf": null
+  },
+  {
+    "id": "approval-settings",
+    "module": "settings",
+    "title": "审批设置",
+    "type": "list",
+    "resource": "approvals",
+    "aliasOf": "purchase-approvals"
+  },
+  {
+    "id": "notification-settings",
+    "module": "settings",
+    "title": "消息设置",
+    "type": "list",
+    "resource": "customer-tickets",
+    "aliasOf": "message-center"
+  },
+  {
+    "id": "audit-logs",
+    "module": "settings",
+    "title": "操作日志",
+    "type": "list",
+    "resource": "audit-logs",
+    "aliasOf": null
+  }
+]

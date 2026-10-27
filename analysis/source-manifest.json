@@ -1,0 +1,137 @@
+[
+  {
+    "file": "reference/lingxing-erp/static/access-control.js",
+    "bytes": 10485,
+    "sha256": "87f86e7a2de29cf8d9b89449376851d3c345c3ac39e93cecc53f4b4bdbe9f5fe"
+  },
+  {
+    "file": "reference/lingxing-erp/static/account-balances.js",
+    "bytes": 3106,
+    "sha256": "f3bc308c7c1051da04a8fd56d9f99d7a642916b679e7f9c4cef45621e10c4a4b"
+  },
+  {
+    "file": "reference/lingxing-erp/static/ad-traffic.js",
+    "bytes": 4267,
+    "sha256": "037623e15aee8760726bfc304e024cb2850ac37dee80491cc21d3d8725fc1ec0"
+  },
+  {
+    "file": "reference/lingxing-erp/static/app.js",
+    "bytes": 158596,
+    "sha256": "c7f78c04701e2d0a76ced9f0cfd16979ca5424a1235cb4cba65f82d475062822"
+  },
+  {
+    "file": "reference/lingxing-erp/static/business-workspace.js",
+    "bytes": 22348,
+    "sha256": "b4799670a25cc58dfd4827c1aa03f40408a89206b605551c3678230f984eeb81"
+  },
+  {
+    "file": "reference/lingxing-erp/static/compat-fields.js",
+    "bytes": 8046,
+    "sha256": "37192add9c99cf2439a0dd1f78480aa078d98373cffd8428ef250f120868a9de"
+  },
+  {
+    "file": "reference/lingxing-erp/static/customer-voice.js",
+    "bytes": 6807,
+    "sha256": "d1eb59ad9cee59ddc2156d928d3d406670d00e3141d28822f2b8f513051bb163"
+  },
+  {
+    "file": "reference/lingxing-erp/static/document-controller.js",
+    "bytes": 15542,
+    "sha256": "059b8fdaa32550960e9699c71cb369d369fb3fb43e7d64f76d487eff24fedcec"
+  },
+  {
+    "file": "reference/lingxing-erp/static/fba-workflow.js",
+    "bytes": 5068,
+    "sha256": "4cc49a4d14b1d91193d55c313a157fbf2366c6840334deffe63bfa3dbef6c3ca"
+  },
+  {
+    "file": "reference/lingxing-erp/static/finance-registers.js",
+    "bytes": 13032,
+    "sha256": "50e7be03054cb1fa2e11664eef829eaa7669a778d00a6690bfa15125b6dd510b"
+  },
+  {
+    "file": "reference/lingxing-erp/static/inventory-aging.js",
+    "bytes": 5541,
+    "sha256": "2879b0a70c5c1981b4d77c244865c8dea359e9c6c0bb664cc2b0b50257cefe23"
+  },
+  {
+    "file": "reference/lingxing-erp/static/listing-dimensions.js",
+    "bytes": 4052,
+    "sha256": "d28900956ee1c6bb57187754ba98ae80056f2f4e355ff690aa8083e4e2be7d83"
+  },
+  {
+    "file": "reference/lingxing-erp/static/logistics-directory.js",
+    "bytes": 2905,
+    "sha256": "753a3f37277dfa27bbeae203a229867f593e4784db26d75a6cab8b85a82c0635"
+  },
+  {
+    "file": "reference/lingxing-erp/static/logistics-views.js",
+    "bytes": 4593,
+    "sha256": "03c6f07cd519e6ad2e6fa1b77d3f1da7777b80f5f93f4d467abf09a0c6b5a985"
+  },
+  {
+    "file": "reference/lingxing-erp/static/manual-testing.js",
+    "bytes": 11644,
+    "sha256": "9880a008826facf4951aa1cd1e6d3fad9dffe4226cc866f4e51da0937a7ae31a"
+  },
+  {
+    "file": "reference/lingxing-erp/static/product-attributes.js",
+    "bytes": 4455,
+    "sha256": "3bffda7a67c40a1e5b2453f41206656c617f609b7ba0269d26ceb08b8757b5f8"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-amendments.js",
+    "bytes": 12869,
+    "sha256": "bf00995257b5f738266bea83f0dfd14889ba68aaec424461dc9f3d154642cd01"
+  },
+  {
+    "file": "reference/lingxing-erp/static/purchase-settlement.js",
+    "bytes": 6580,
+    "sha256": "b8e34eda85482480874b8ffc2f56401c17f948b77cd9974f2bb9f202fa4907b9"
+  },
+  {
+    "file": "reference/lingxing-erp/static/receiving-workflow.js",
+    "bytes": 3232,
+    "sha256": "40753e50a93a4aa64d305c5a0a39d62372568ddfd6e3000708f5bd6bff51479d"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-policies.js",
+    "bytes": 12114,
+    "sha256": "efe59d674a0102ef441437aa1c40fc650ecd9df5ba83fd478f35c6a6d8045406"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-returns.js",
+    "bytes": 11066,
+    "sha256": "b21d8d9a3a05b1b47bc26042141ce4538b0a7645023753709d42bf5f11084559"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-targets.js",
+    "bytes": 7283,
+    "sha256": "3dfa45c141aa2801e3ed77fa7c43237048543793763a42a486df6a82c2806e2e"
+  },
+  {
+    "file": "reference/lingxing-erp/static/sales-workflow.js",
+    "bytes": 5679,
+    "sha256": "6fe67e261632dcdb77e21200e34f1bb3c68ceb3fb20494e837fb3988dd46a0e0"
+  },
+  {
+    "file": "reference/lingxing-erp/static/service-templates.js",
+    "bytes": 7130,
+    "sha256": "3555010039121bc80a0cd4dcddcc04476c48a0603d8b4c2351927953015ef4c6"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stock-extensions.js",
+    "bytes": 5242,
+    "sha256": "c929e4909805cd5c3b623b261d898e337e02ab18621223b61e8bacc7175a7f32"
+  },
+  {
+    "file": "reference/lingxing-erp/static/stocktaking.js",
+    "bytes": 7468,
+    "sha256": "385c96d2812d93804f7bbe2cb8af4d0aa8180f62ddc00ffd363762a18a0c700a"
+  },
+  {
+    "file": "reference/lingxing-erp/static/supplier-quotes.js",
+    "bytes": 5924,
+    "sha256": "e3265791df94f169eb0236121e3fd8045b31cde7ece8d80e6ae18ef03951a604"
+  }
+]
